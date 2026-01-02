@@ -54,3 +54,5 @@ console.log('%c멋사 프론트엔드 부트캠프 16기 여러분 파이팅! �
   font-size: 3rem;
   font-weight: 700;
 `)
+
+
