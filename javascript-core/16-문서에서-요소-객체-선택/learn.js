@@ -6,30 +6,68 @@
 // * element.querySelector() : 특정 요소 내부에서만 탐색합니다.
 // --------------------------------------------------------------------------
 
-// 아주 오래 전 웹 브라우저 세상에서 사용했던 오래된 방법 (⚠️ 비표준)
-console.log(document.all); // HTMLAllCollection []
+
+// 아주 오래 전 웹 브라우저 세상에서 사용했던 오래된 방법 (⚠️ 비표준: Microsoft사의 IE 브라우저)
+// console.log(document.all) // HTMLAllCollection []
 
 // 그리고 시간이 흘러 사람들은 표준의 필요성을 절실히 느끼기 시작
 // 표준 API를 만들기 시작했는데... (✅ 표준)
-console.log(document.getElementsByTagName("p")); // HTMLCollection []
+// console.log(document.getElementsByTagName('p')) // HTMLCollection []
 
-// 그런데 여러 요소들을 수집하는 것 말고,
+
+// 브라우저에서 하는 일
+// * HTML 파서(해석 프로그램) 
+//   - *.html 파일 파싱(해석) -> DOM 생성
+// * JavaScript 엔진 
+//   - *.js 파일 처리 -> DOM에 접근/조작
+//   - *.js 파일 처리하는 동안 HTML 파서는 대기 상태가 됨. (동기식, 일을 안하고 대기 중...)
+
+
+// 그런데 여러 요소들을 수집하는 것 말고, 
 // 문서에서 고유한 id 속성을 가진 단 하나의 요소를 선택하는 방법이 필요 (✅ 표준)
-console.log(document.getElementById("content")); // HTMLElement {}
+console.log(document.getElementById('content')) // Element (찾은 경우) 또는 null (못찾은 경우)
+
+// <html> 요소(객체) 선택
+// console.log(document.documentElement)
+// console.log(document.querySelector('html'))
+
+// <head> 요소(객체) 선택
+// console.log(document.head)
+// console.log(document.querySelector('head'))
+
+// <title> 요소(객체) 선택
+// console.log(document.querySelector('title'))
+
+// <meta /> 요소(객체) 선택
+// console.log(document.querySelector('meta'))
+
+// <body> 요소(객체) 선택
+// console.log(document.body)
+// console.log(document.querySelector('body'))
+
+// <article> 요소(객체) 선택
+// console.log(document.querySelector('article'))
+// console.log(document.querySelector('#content'))
+
 
 // --------------------------------------------------------------------------
 // document.querySelector - 전체 문서 탐색
 // --------------------------------------------------------------------------
 
+
 // 1. ID 선택자를 사용하여 '#chapter' 요소를 선택하고 콘솔에 출력하세요.
+
 
 // 2. 클래스 선택자를 사용하여 '.sr-only' 요소를 선택하고 콘솔에 출력하세요.
 
+
 // 3. 속성 선택자를 사용하여 title에 'Model'이 포함된([title*="Model"]) 요소를 선택하세요.
+
 
 // 설명:
 // querySelector는 CSS와 동일한 선택자 방식을 사용하여 요소를 선택합니다.
 // 일치하는 대상이 여러 개여도 '가장 먼저 발견된 첫 번째' 요소만 반환합니다.
+
 
 // --------------------------------------------------------------------------
 // element.querySelector - 특정 범위 내 탐색
@@ -37,11 +75,14 @@ console.log(document.getElementById("content")); // HTMLElement {}
 
 // 1. 먼저 부모 요소인 '.musicians'를 찾아 변수 musicianList에 할당하세요.
 
+
 // 2. musicianList 변수(이미 선택된 요소) 내부에서만 'li' 요소를 찾아 출력하세요.
+
 
 // 설명:
 // 특정 서가(부모 요소)를 지정하고 그 안에서 책(자식 요소)을 찾는 방식입니다.
 // 코드의 의도가 명확해지고, 다른 구역의 요소와 충돌할 버그를 예방하며, 성능 면에서도 효율적입니다.
+
 
 // --------------------------------------------------------------------------
 // 그 밖의 요소 선택 API (참고)
@@ -49,11 +90,14 @@ console.log(document.getElementById("content")); // HTMLElement {}
 
 // 1. getElementById()를 사용하여 '#chapter' 요소를 선택해 보세요.
 
+
 // 2. getElementsByTagName()을 사용하여 모든 'li' 태그를 선택해 보세요.
 
+
 // 설명:
-// querySelector 이전에 사용되던 고전적인 주문들입니다.
+// querySelector 이전에 사용되던 고전적인 주문들입니다. 
 // ID 선택 시 getElementById는 매우 빠르지만, 유연함은 querySelector가 더 뛰어납니다.
+
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
