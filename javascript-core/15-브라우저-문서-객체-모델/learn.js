@@ -5,56 +5,78 @@
 // * DOM : 웹 문서 내부의 내용 관리 (집 안 가구) - document 객체
 // --------------------------------------------------------------------------
 
+// 각 환경의 전역 객체
+// Node.js - global (JavaScript 언어 + Node.js 환경에 내장된 다양한 기능(API))
+// Browser - window (JavaScript 언어 + Browser 환경에 내장된 다양한 기능(API))
+
+// 콘솔(Console) 객체에 요청
+// 기록해봐(대상) -> console.log(data)
+// console.log(window)
+// console.log(10 + 9 / 2)
 
 // --------------------------------------------------------------------------
 // BOM - Window 객체 탐색
 // --------------------------------------------------------------------------
 
-// 1. 최상위 객체인 window를 콘솔에 출력하세요.
-
+// 1. 최상위(root) 객체인 window를 콘솔에 출력하세요.
+// console.log(window) // Window { navigator, location }
 
 // 2. window 객체의 navigator 속성을 통해 브라우저 정보를 출력하세요. (점 표기법 사용)
 
+// 객체의 속성에 접근
+// - 점(.) 표기법
+// console.log(window.navigator.userAgent) // Navigator { userAgent }
+// - 대괄호([]) 표기법
+// console.log(window['navigator']['userAgent'])
 
 // 3. 위와 동일한 정보를 window를 생략하고 출력해 보세요. (전역 객체의 특징)
-
+// console.log(navigator, typeof navigator) // 'object'
+// console.log(navigator.userAgent, typeof navigator.userAgent) // 'string'
 
 // 설명:
 // window 객체는 BOM의 뿌리(root)이자 JavaScript 전역 객체입니다.
 // 대부분 브라우저의 속성은 window를 생략하고 접근할 수 있습니다.
 
-
 // --------------------------------------------------------------------------
 // BOM - 브라우저 제어 (확인 및 이동)
 // --------------------------------------------------------------------------
 
-// 1. 사용자에게 '유튜브 페이지로 이동할까요?'라고 묻는 
-//    확인창을 띄우고 결과를 변수 `userConfirm`에 담으세요.
-
+// 1. 사용자에게 '유튜브 페이지로 이동할까요?'라고 묻는
+//    확인창(confirm)을 띄우고 결과를 변수 `userConfirm`에 담으세요.
+// const moveToYoutube = window.confirm('유튜브 페이지로 이동할까요?')
+// console.log(moveToYoutube) // Boolean
 
 // 2. 조건문을 작성하세요.
 //    - [참일 때]: '네. 유튜브 페이지로 이동할게요!' 경고창(alert)을 띄우고,
 //      `window.location.href`를 'https://www.youtube.com'으로 변경하세요.
-//    - [거짓일 때]: '페이지 이동을 취소했어요.' 경고창을 띄우세요.
-
+// if (moveToYoutube) {
+// window.alert('네. 유튜브 페이지로 이동할게요!')
+// window.location.href = 'https://www.youtube.com'
+// }
+//    - [거짓일 때]: '네. 유튜브 페이지로 이동을 취소할게요!' 경고창을 띄우세요.
+// else {
+// window.alert('네. 유튜브 페이지로 이동을 취소할게요!')
+// }
 
 // 설명:
 // confirm()은 확인 시 true, 취소 시 false를 반환합니다.
 // location 객체는 브라우저의 주소창 정보를 제어하는 BOM의 핵심 객체입니다.
-
 
 // --------------------------------------------------------------------------
 // DOM - Document 객체와 트리 구조
 // --------------------------------------------------------------------------
 
 // 1. 현재 로드된 문서를 나타내는 document 객체를 콘솔에 출력하세요.
-
+// console.log(window.document)
 
 // 2. document 객체를 객체 내부 구조(속성 등)까지 포함하여 자세히(dir) 출력하세요.
-
+// console.dir(document)
 
 // 3. document 객체와 window.document 객체가 동일한지 비교(===)한 결과를 출력하세요.
-
+// console.log(window.document === document) // 동일 객체인가?
+const doc = document,
+  htmlDoc = document;
+// console.log(doc === document, htmlDoc === document)
 
 // 설명:
 // document는 실제 HTML 문서를 JavaScript 객체로 모델링(modeling)한 것입니다.
@@ -84,26 +106,24 @@
 //     # 내용 : '자세히 보기'
 //     # 기능 : 클릭하면 알림창 띄우기
 
-
 // --------------------------------------------------------------------------
 // DOM - 문서 정보 접근 및 수정
 // --------------------------------------------------------------------------
 
 // 1. 현재 페이지의 제목(title)을 가져와 '현재 페이지 제목' 문구와 함께 출력하세요.
-
+console.log("현재 웹 페이지의 제목:", document.title); // 웹 페이지 제목 읽기
 
 // 2. 현재 문서의 전체 URL 주소를 출력하세요.
-
+console.log(document.URL);
 
 // 3. 현재 문서의 도메인(domain) 정보를 출력하세요.
-
+console.log(document.domain);
 
 // 4. [수정] 브라우저 상단 탭의 제목(title)을 '학습 중인 새로운 제목'으로 변경해 보세요.
-
+document.title = "멋사 FE.16 JavaScript 학습!"; // 웹 페이지 제목 쓰기
 
 // 설명:
 // DOM 객체의 속성에 새로운 값을 할당하면 실제 브라우저의 렌더링 상태가 즉시 변경됩니다.
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
