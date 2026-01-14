@@ -1,6 +1,5 @@
 {
   "scripts": {
-    //"단축명령어": "패키지이름(명령어) --옵션1=값 --옵션2=값",
     "dev": "live-server --host=localhost --port=3000 --no-browser",
     "dev:bun": "bun learn.html"
   },
