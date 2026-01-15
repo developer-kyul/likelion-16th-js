@@ -1,17 +1,111 @@
-console.log('practice')
+// --------------------------------------------------------------------------
+// 1. "text-indigo-600" 클래스를 추가해 글자색을 바꿔보세요! (추가)
+// --------------------------------------------------------------------------
 
+// 문서에서 .practice 요소 찾기 (변수에 참조: 기억하기 위해)
+const practice = document.querySelector(".practice");
+// console.log(practiceElement)
 
-/* 
-targetElement.classList[methodName](activeClassName)
-이렇게 했을때 그러면 active 라는 클래스명이 삭제가 되는걸까요??
-브라우저에서 확인해보니, 클래스명이 사라지지 않아서
+// .practice .item-add 요소 찾기 (기억된 상위 요소를 통해)
+const itemAdd = practice.querySelector(".item-add");
+// console.log(itemAdd)
 
+itemAdd.classList.add("text-indigo-600");
 
-let activeClassName = "active";
+// --------------------------------------------------------------------------
+// 2. "bg-yellow-100" 클래스를 제거해 노란 배경을 없애보세요! (제거)
+// --------------------------------------------------------------------------
 
-const targetElement = prose.querySelector(".target");
-const hasActiveClass = targetElement.classList.contains(activeClassName);
+const itemRemove = practice.querySelector(".item-remove");
+// console.log(itemRemove)
 
-여기서 변수 선택하는게 헷갈려서 추가 설명이 이해가 안되는 같아요 
-다시 한 번만 설명해주실 수 있으실까요?
-*/
+itemRemove.classList.remove("bg-yellow-100");
+
+// --------------------------------------------------------------------------
+// 3. 한 번에 글자색, 두께, 배경색을 모두 바꿔보세요! (연쇄 조작)
+// --------------------------------------------------------------------------
+
+const itemMultiple = practice.querySelector(".item-multiple");
+// console.log(itemMultiple)
+
+// 모두 한 번에 적용
+itemMultiple.classList.add("bg-yellow-100", "text-green-500", "font-semibold");
+
+// 배경색
+// itemMultiple.classList.add('bg-yellow-100')
+// 글자색
+// itemMultiple.classList.add('text-green-500')
+// 글자 두께
+// itemMultiple.classList.add('font-semibold')
+
+// --------------------------------------------------------------------------
+// 4. "text-red-500"을 "text-green-500"으로 교체해 보세요! (교체)
+// --------------------------------------------------------------------------
+
+const itemReplace = practice.querySelector(".item-replace");
+// console.log(itemReplace)
+
+// 제거 → 추가 대신, 교체
+itemReplace.classList.replace("text-red-500", "text-green-500");
+
+// 'text-red-500' 제거
+// itemReplace.classList.remove('text-red-500')
+// 'text-green-500' 추가
+// itemReplace.classList.add('text-green-500')
+
+// --------------------------------------------------------------------------
+// 5. 없는 클래스를 다른 클래스로 바꾸려 하면 어떻게 될까요? (안정성)
+// --------------------------------------------------------------------------
+
+const itemSafeReplace = practice.querySelector(".item-safe-replace");
+// console.log(itemSafeReplace)
+
+const result = itemSafeReplace.classList.replace(
+  "unknown-class",
+  "text-blue-500"
+);
+
+if (!result) {
+  console.warn("⚠️ 해당 요소에 없는 클래스 이름이에요! (unknown-class)");
+}
+
+// --------------------------------------------------------------------------
+// 6. "text-indigo-600" 클래스가 있는지 확인하세요! (포함 여부 확인)
+// --------------------------------------------------------------------------
+
+const itemContains = practice.querySelector(".item-contains");
+const hasTextIndigo600Color =
+  itemContains.classList.contains("text-indigo-600");
+// console.log(hasTextIndigo600Color)
+
+// --------------------------------------------------------------------------
+// 7. "text-indigo-600" 클래스가 있다면 제거하고, 없다면 추가해보세요. (토글)
+// --------------------------------------------------------------------------
+
+const itemContainsTarget = practice.querySelector(".item-contains-target");
+
+// 토글(toggle) 메서드 활용 (편리)
+itemContainsTarget.classList.toggle("text-indigo-600");
+
+// 논리에 의한 조건 처리 (contains, remove, add 조합)
+// if (itemContainsTarget.classList.contains('text-indigo-600')) {
+//   itemContainsTarget.classList.remove('text-indigo-600')
+// } else {
+//   itemContainsTarget.classList.add('text-indigo-600')
+// }
+
+//=================================================================
+// 실습 : function 활용
+//=================================================================
+// function replaceElementClasses(targetElement, removeClass, ...addClasses) {
+//   targetElement.classList.remove(removeClass);
+//   targetElement.classList.add(...addClasses);
+// }
+
+// replaceElementClasses(
+//   itemReplace,
+//   "text-red-500",
+//   "text-purple-500",
+//   "font-bold",
+//   "text-lg"
+// );
