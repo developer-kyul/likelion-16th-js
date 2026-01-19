@@ -7,9 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/fonts.css" />
     <link rel="stylesheet" href="./assets/styles.css" />
+    <script src="./learn.js" defer></script>
   </head>
 
   <body>
+
+    <div class="practice" style="padding: 40px">
+      <!-- 실습 1 -->
+      <div><a class="button" href="#">참고</a></div>
+      <!-- 실습 2 -->
+      <div><button type="button" id="save-button">저장</button></div>
+      <!-- 실습 3 -->
+      <div><button type="button" class="alarm-button">알림</button></div>
+      <!-- 실습 4 -->
+      <div><button type="button" class="submit-button">제출</button></div>
+      <!-- 실습 5 -->
+      <div><button class="close-btn">닫기</button></div>
+      <!-- 실습 6 -->
+      <div data-id="cart">
+        <p>상품 가격: <span data-id="price">100,000</span>원</p>
+        <p>수량: <span data-id="quantity">10</span>개</p>
+        <button type="button" data-id="calc-button">총 합계 계산하기</button>
+        <p>결과: <span data-id="total-result">0</span>원</p>
+      </div>
+    </div>
 
     <main class="prose">
       <article>

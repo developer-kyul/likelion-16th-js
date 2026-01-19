@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
+
   <head>
     <meta charset="UTF-8" />
     <title>오프캔버스(Off canvas) 메뉴</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable-dynamic-subset.min.css"
-      as="style"
-      crossorigin
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable-dynamic-subset.min.css"
-      crossorigin
-    />
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable-dynamic-subset.min.css" as="style" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable-dynamic-subset.min.css" crossorigin />
     <link rel="icon" href="/images/ecmascript-logo.png" type="image/png" />
     <link rel="stylesheet" href="/styles/main.css" />
-    <script defer src="/scripts/main.js"></script>
+    <script src="/scripts/remind.js" defer></script>
   </head>
 
   <body>
+
     <div class="offsite-container">
       <nav class="nav">
         <ul>
@@ -34,9 +27,12 @@
 
     <main class="site-container">
       <h1>버튼 클릭으로 메뉴 토글</h1>
-      <button type="button" class="button">
-        <span>메뉴 열기</span>
+      <!-- <button type="button" class="button offcanvas-open-button"> -->
+      <button type="button" class="button" data-desc="오프캔버스 열기 버튼">
+        <span>메뉴 토글</span>
       </button>
     </main>
+
   </body>
+
 </html>

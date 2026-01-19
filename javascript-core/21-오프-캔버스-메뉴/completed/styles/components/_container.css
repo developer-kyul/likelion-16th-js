@@ -7,16 +7,15 @@
   background-color: var(--menu-background-color);
 }
 
-.offsite-container.move {
-  left: 0;
-}
-
-body.move .site-container {
-  transform: translateX(14rem);
-}
-
 .site-container {
   padding-top: 3rem;
   padding-left: 2.5rem;
   max-width: 43rem;
+}
+
+.off-canvas-is-open {
+  .offsite-container,
+  .site-container {
+    translate: 14rem 0;
+  }
 }

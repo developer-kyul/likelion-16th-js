@@ -7,26 +7,28 @@
 // * Event Loop: 콜 스택과 큐를 연결하는 감시자
 // --------------------------------------------------------------------------
 
-const runBtn = document.querySelector(".run-button"),
-  codeBlock = document.querySelector(".code-block");
+const runBtn    = document.querySelector('.run-button'),
+      codeBlock = document.querySelector('.code-block')
 
 // --------------------------------------------------------------------------
 // 코드 실행 흐름 분석 실습
 // --------------------------------------------------------------------------
 
-runBtn.addEventListener("click", () => {
+runBtn.addEventListener('click', () => {
   // 코드 블록 초기화
-  codeBlock.innerHTML = "";
-
+  codeBlock.innerHTML = ''
+  
   // [퀴즈] 아래 함수들의 실행 순서는 어떻게 될까요?
   // bar()
   // foo()
   // baz()
-});
+})
+
 
 // 설명:
 // 모든 동기 함수(bar, foo, baz)가 종료되어 콜 스택이 비워지면
 // 이벤트 루프가 큐에 대기 중이던 setTimeout의 콜백을 스택으로 가져옵니다.
+
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
@@ -37,64 +39,66 @@ runBtn.addEventListener("click", () => {
 // 4. 이벤트 루프는 '콜 스택'이 텅 비었을 때만 '큐'의 작업을 스택으로 옮깁니다.
 // --------------------------------------------------------------------------
 
-// [생각해보기]
+// [생각해보기] 
 // 만약 setTimeout의 시간을 0으로 설정하면, '[2]'는 바로 출력될까요?
+
+
 
 // --------------------------------------------------------------------------
 
 function log(message) {
-  const p = document.createElement("p");
-  p.textContent = ">" + message;
-  codeBlock.appendChild(p);
-  console.log(message);
+  const p = document.createElement('p')
+  p.textContent = '>' + message
+  codeBlock.appendChild(p)
+  console.log(message)
 }
 
 function foo() {
-  return log("[1] (콜 스택에서 즉시 실행)");
+  return log('[1] (콜 스택에서 즉시 실행)')
 }
 
 function bar() {
-  log("bar() 실행 시작");
+  log('bar() 실행 시작')
 
   // setTimeout은 Web API로 넘겨집니다.
   // 500ms(0.5초) 뒤에 콜백 함수가 '큐'로 들어갑니다.
   setTimeout(() => {
-    log("[2] (비동기 콜백: 큐를 거쳐 스택이 비었을 때 실행)");
-  }, 500);
+    log('[2] (비동기 콜백: 큐를 거쳐 스택이 비었을 때 실행)')
+  }, 500)
 
-  log("bar() 실행 종료");
+  log('bar() 실행 종료')
 }
 
 function baz() {
-  return log("[3] (콜 스택에서 즉시 실행)");
+  return log('[3] (콜 스택에서 즉시 실행)')
 }
 
+
 // --------------------------------------------------------------------------
-// 실습
-// --------------------------------------------------------------------------
-피자_주문시키기("더블 치즈", 피자_도착_알림);
-바닥_청소();
-의류_정리();
+
+피자_주문시키기('더블 치즈', 피자_도착_알림)
+바닥_청소()
+의류_정리()
 
 function 바닥_청소() {
-  console.log("🤖 바닥 청소를 진행합니다.");
+  console.log('🤖 바닥 청소를 진행합니다.')
 }
 
 function 의류_정리() {
-  console.log("🤖 의류 정리를 진행합니다.");
+  console.log('🤖 의류 정리를 진행합니다.')
 }
 
 function 피자_주문시키기(메뉴, 콜백) {
-  피자집_주문("🤖 " + 메뉴 + " 피자를 주문할게요. 집 주소는...");
-  setTimeout(콜백, 5000);
+	피자집_주문('🤖 ' + 메뉴 + ' 피자를 주문할게요. 집 주소는...')
+	setTimeout(콜백, 5000)
 }
 
 function 피자집_주문(주문_메시지) {
-  console.log("%cOOO 피자입니다.", "color: #2583e2");
-  console.log(주문_메시지);
-  console.log("%c네. 주문 확인했습니다. 좀만 기다려주세요.", "color: #2583e2");
+	console.log('%cOOO 피자입니다.', 'color: #2583e2')
+	console.log(주문_메시지)
+	console.log('%c네. 주문 확인했습니다. 좀만 기다려주세요.', 'color: #2583e2')
 }
 
 function 피자_도착_알림() {
-  console.log("🤖 피자가 도착했습니다. 이제 피자를 드실 수 있어요.");
+  console.log('🤖 피자가 도착했습니다. 이제 피자를 드실 수 있어요.')
 }

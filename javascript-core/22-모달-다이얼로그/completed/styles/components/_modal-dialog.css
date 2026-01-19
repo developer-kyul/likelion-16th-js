@@ -7,15 +7,18 @@
   color: var(--modal-text-color);
 }
 
-.modal-overlay.is-open {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  display: none;
-}
-
 .modal-overlay {
+
+  .modal-dialog-is-open & {
+    opacity: 1;
+    z-index: 10;
+  }
+
+  opacity: 0;
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +36,7 @@
     min-inline-size: 50vmin;
     min-block-size: 50vmin;
   }
-
+  
   .modal-close-button {
     .modal-dialog:hover & {
       opacity: 1;
@@ -49,7 +52,7 @@
     border: 2px solid var(--dialog-close-button-background-color);
     background: var(--dialog-close-button-background-color);
     color: var(--dialog-close-button-color);
-
+    
     &:hover,
     &:active,
     &:focus {
@@ -59,3 +62,7 @@
     }
   }
 }
+
+
+
+

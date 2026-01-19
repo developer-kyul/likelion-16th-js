@@ -8,18 +8,12 @@
   --deep-cyan-color: #03a4c8;
   --deep-purple-color: #5f29ff;
   --deep-orange-color: #ed9625;
-
+  
   --bg-color: light-dark(var(--white-color), var(--dark-navy-color));
   --text-color: light-dark(var(--dark-navy-color), var(--white-color));
 
-  --primary-color: light-dark(
-    var(--deep-purple-color),
-    var(--deep-yellow-color)
-  );
-  --secondary-color: light-dark(
-    var(--deep-cyan-color),
-    var(--deep-orange-color)
-  );
+  --primary-color: light-dark(var(--deep-purple-color), var(--deep-yellow-color));
+  --secondary-color: light-dark(var(--deep-cyan-color), var(--deep-orange-color));
 
   --surface-color: color-mix(in srgb, var(--text-color), transparent 92%);
   --surface-color-bold: color-mix(in srgb, var(--text-color), transparent 80%);
@@ -40,24 +34,16 @@ body {
   letter-spacing: -0.02em;
   color: var(--text-color);
 
-  & h1,
-  & h2,
-  & h3 {
+  & h1, & h2, & h3 {
     margin: 0;
     line-height: 1.2;
     font-weight: 400;
     color: var(--primary-color);
   }
 
-  & h1 {
-    font-size: 1.75rem;
-  }
-  & h2 {
-    font-size: 1.5rem;
-  }
-  & h3 {
-    font-size: 1.125rem;
-  }
+  & h1 { font-size: 1.75rem; }
+  & h2 { font-size: 1.5rem; }
+  & h3 { font-size: 1.125rem; }
 
   & p {
     margin-block: 1.25em;
@@ -100,7 +86,7 @@ body {
 
   & dfn {
     font-style: normal;
-
+    
     & abbr[title] {
       cursor: help;
       border-block-end: 1px dashed var(--primary-color);
@@ -127,7 +113,7 @@ body {
   caption& {
     position: static;
   }
-
+  
   &.focusable:focus {
     overflow: initial;
     position: static;
