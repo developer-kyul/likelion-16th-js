@@ -239,6 +239,11 @@ console.log(greatPeople);
 const fruits = ["사과", "바나나"];
 
 // ⚠️ 린터가 'no-unused-vars' 경고를 보낼 수 있습니다.
-// const lastFruit = fruits.pop()
+let lastFruit = fruits.pop();
+console.log(lastFruit); // '바나나'
 
 // 만약 pop()을 한 번 더 실행한다면, fruits는 어떤 상태가 될까요?
+lastFruit = fruits.pop();
+console.log(lastFruit); // '사과'
+
+console.log(fruits); // []
