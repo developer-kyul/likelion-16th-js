@@ -12,15 +12,34 @@
 // 손님 위치 파악하기
 // --------------------------------------------------------------------------
 
-const guestList = ['지율', '상연', '야무', '범쌤']
+const guestList = ["지율", "상연", "야무", "범쌤"];
+console.log(guestList);
 
-// [퀴즈] '야무' 손님은 몇 번 방에 계실까요?
+// [퀴즈] '야무' 손님은 몇 번 방에 계실까요? (2)
+console.log(typeof guestList.indexOf);
+console.log(guestList.indexOf("야무"));
+console.log(guestList.indexOf("슬비"));
 
+// 사용자 정의 함수 hasItem 또는 hasElement 작성
+// hasItem(배열, 항목) 또는
+// hasElement(배열, 항목) 값이 있으면 true 반환 없으면 false 반환
+
+// 함수 작성
+function hasElement(arrayObject, checkItem) {
+  const value = arrayObject.indexOf(checkItem); // -1 또는 0 보다 큰 값
+  return value > -1;
+}
+
+// 함수 참조
+const hasItem = hasElement;
+
+// 테스트 코드
+console.log(hasElement(guestList, "야무")); // true
+console.log(hasItem(guestList, "슬비")); // false
 
 // --------------------------------------------------------------------------
 // 입구와 끝방 손님 관리 (Push, Pop, Unshift, Shift)
 // --------------------------------------------------------------------------
-
 
 // 1. 끝방(마지막)에 새로운 손님 모시기
 // ['지율', '상연', '야무', '범쌤', '심선생님']
@@ -29,13 +48,12 @@ const guestList = ['지율', '상연', '야무', '범쌤']
 // '지율' 퇴실
 // console.log('방금 체크아웃하신 분:', leavingGuest)
 
-
 // --------------------------------------------------------------------------
 // 만능 도구 splice()로 장부 중간 수정하기
 // --------------------------------------------------------------------------
 // 공식: splice(시작_인덱스, 제거_개수, 추가_할_항목)
 
-const numbers = [1, 2, 5]
+const numbers = [1, 2, 5];
 
 // 중간(인덱스 2)에 3, 4를 추가하고 싶다면?
 // console.log('장부 중간 수정 결과:', numbers) // [1, 2, 3, 4, 5]
@@ -44,20 +62,18 @@ const numbers = [1, 2, 5]
 // [2, 3, 4] 제거
 // console.log('남은 장부:', numbers) // [1, 5]
 
-
 // --------------------------------------------------------------------------
 // 안전한 백업 장부 만들기 (slice)
 // --------------------------------------------------------------------------
 
-const originalLog = ['데이터1', '데이터2', '데이터3']
-let backupLog // 원본과 똑같은 사본 생성
+const originalLog = ["데이터1", "데이터2", "데이터3"];
+let backupLog; // 원본과 똑같은 사본 생성
 
 // 사본(배열)에 끝에 '데이터4' 추가
 
 // 사본을 수정해도 원본은 안전합니다. (불변성 유지)
-console.log('원본 장부:', originalLog) 
-console.log('백업 장부:', backupLog)
-
+console.log("원본 장부:", originalLog);
+console.log("백업 장부:", backupLog);
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
@@ -72,7 +88,7 @@ console.log('백업 장부:', backupLog)
 // 린터(Linter) 점검 실습: 아래 코드의 '잠재적 버그'를 예측해보세요.
 // --------------------------------------------------------------------------
 
-const fruits = ['사과', '바나나']
+const fruits = ["사과", "바나나"];
 
 // ⚠️ 린터가 'no-unused-vars' 경고를 보낼 수 있습니다.
 // const lastFruit = fruits.pop()
