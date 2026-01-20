@@ -51,6 +51,7 @@ console.log(guestList);
 
 // --------------------------------------------------------------------------
 // 앞에서 제거 (shift)
+
 guestList.shift();
 guestList.shift();
 guestList.shift();
@@ -82,20 +83,80 @@ console.log(guestList);
 // 공식: splice(시작_인덱스, 제거_개수, 추가_할_항목)
 
 const numbers = [1, 2, 5];
+//               0, 1, 2
+
+// const lastNumber = numbers.pop()
+// console.log(lastNumber)
+// numbers.push(3, 4, lastNumber)
+// console.log(numbers)
 
 // 중간(인덱스 2)에 3, 4를 추가하고 싶다면?
 // console.log('장부 중간 수정 결과:', numbers) // [1, 2, 3, 4, 5]
+numbers.splice(2, 0, 3, 4);
+console.log(numbers);
+//                      0, 1, 2, 3, 4
+
+// 0 인덱스부터 시작해서 2개 제거
+// numbers 배열에서 1, 2 항목(0, 1인덱스) 제거
+// numbers.shift()
+// console.log(numbers)
+// numbers.shift()
+// console.log(numbers)
+// const removedNumbers = numbers.splice(0, 2)
+// console.log(removedNumbers)
+// console.log(numbers)
+
+// 마지막 인덱스 - 3에서 3개 제거
+// numbers.pop()
+// console.log(numbers)
+// numbers.pop()
+// console.log(numbers)
+// numbers.pop()
+// console.log(numbers)
+
+// const removeCount = 1
+// const startIndex = numbers.length - removeCount
+// const removedNumbers = numbers.splice(startIndex, removeCount)
+
+// console.log(removedNumbers)
+// console.log(numbers)
+
+// 배열의 끝에서 [n]개 제거하는 함수(기능) 구현
+// removeItemsFromLast(arrayObject, removeCount)
+// 함수 이름 후보: popMany, dropRight, truncate
+function removeItemsFromLast(arrayObject, removeCount) {
+  // 코드 로직 작성
+  const startIndex = arrayObject.length - removeCount;
+  const removedItems = arrayObject.splice(startIndex, removeCount);
+  return removedItems;
+}
+
+// const popMany = removeItemsFromLast
+// const dropRight = popMany
+
+// const removedItems = removeItemsFromLast(numbers, 3)
+// console.log(numbers)
+// console.log(removedItems) // 삭제된 항목이 포함된 새로운 배열 [2, 3, 4]
 
 // 특정 구간(인덱스 1부터 3개)의 손님을 배웅하려면?
 // [2, 3, 4] 제거
-// console.log('남은 장부:', numbers) // [1, 5]
+console.log("남은 장부:", numbers); // [1, 5]
+const deletedNumbers = numbers.splice(1, 3);
+// 삭제된 항목들로 구성된 새로운 배열
+console.log(deletedNumbers);
+// 가지고 있던 항목이 삭제된 윈본 배열(변형됨)
+console.log(numbers);
 
 // --------------------------------------------------------------------------
 // 안전한 백업 장부 만들기 (slice)
 // --------------------------------------------------------------------------
 
 const originalLog = ["데이터1", "데이터2", "데이터3"];
-let backupLog; // 원본과 똑같은 사본 생성
+//                      0   ,    1    ,   2
+// let backupLog = originalLog.slice(0, originalLog.length) // 원본과 똑같은 사본 생성
+let backupLog = originalLog.slice(); // 원본과 똑같은 사본 생성
+
+// originalLog.splice(originalLog.length - 2, 2)
 
 // 사본(배열)에 끝에 '데이터4' 추가
 
