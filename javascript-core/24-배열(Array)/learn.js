@@ -136,3 +136,34 @@ console.log(cart);
 cart[0] = "계란";
 cart[1] = "우유";
 console.log(cart);
+
+// --------------------------------------------------------------------------
+// 실습 풀이
+// --------------------------------------------------------------------------
+// 1. 빈 배열을 생성합니다.
+// 2. 3개의 항목을 포함하는 배열을 작성합니다.
+// 3. `instructors` 배열에서 `"야무"` 항목을 가져와 `yamoo9` 변수에 할당합니다.
+// 4. `instructors` 배열에서 `"슬비"` 항목 값을 `"김데리사"`로 변경합니다.
+
+// const instructors = ["야무", "슬비"];
+// instructors[0] = "yamoo9";
+// instructors[1] = "김데리사";
+// console.log(instructors);
+
+// 정석적 방식으로 배열 객체 생성
+// const webTechniques = new Array('HTML', 'CSS', 'JavaScript')
+const webTechniques = [];
+webTechniques[webTechniques.length] = "HTML";
+webTechniques[webTechniques.length] = "CSS";
+webTechniques[webTechniques.length] = "JavaScript";
+console.log(webTechniques);
+
+const instructors = ["야무", "슬비"];
+console.log(instructors);
+
+const yamoo9 = instructors[0];
+console.log(yamoo9);
+
+instructors[1] = "김데레사";
+console.log(instructors[1]);
+console.log(instructors);
