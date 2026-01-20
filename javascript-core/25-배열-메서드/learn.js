@@ -124,7 +124,7 @@ console.log(numbers);
 // 배열의 끝에서 [n]개 제거하는 함수(기능) 구현
 // removeItemsFromLast(arrayObject, removeCount)
 // 함수 이름 후보: popMany, dropRight, truncate
-function removeItemsFromLast(arrayObject, removeCount) {
+function popMany(arrayObject, removeCount) {
   // 코드 로직 작성
   const startIndex = arrayObject.length - removeCount;
   const removedItems = arrayObject.splice(startIndex, removeCount);
@@ -172,6 +172,65 @@ console.log("백업 장부:", backupLog);
 // 3. slice는 원본을 건드리지 않고 새로운 배열을 반환(Immutable)합니다.
 // 4. 배열의 시작 조작(unshift, shift)은 끝 조작(push, pop)보다 컴퓨터에게 더 힘든 작업입니다.
 // --------------------------------------------------------------------------
+
+// --------------------------------------------------------------------------
+// 실습 문제 풀이
+// --------------------------------------------------------------------------
+
+// 아래 작성된 배열 데이터를 사용해 실습을 진행합니다.
+const people = ["세종대왕", "이순신", "김구", "유관순", "장영실", "신사임당"];
+
+const greatPeople = people.slice(); // people 배열 복사
+console.log(people === greatPeople); // false라면 복제된 것이 맞음 (다른 힙 주소 참조)
+
+// 1. greatPeople 배열에서 '이순신' 항목의 인덱스를 확인합니다. (indexOf)
+const leeSSIndex = greatPeople.indexOf("이순신");
+console.log(leeSSIndex);
+console.log(greatPeople.indexOf("야무"));
+
+// 2. greatPeople 배열 시작 위치에 '정약용', '지석영'을 추가합니다.
+//     1. `unshift()` 활용
+// greatPeople.unshift('정약용', '지석영')
+//     2. `splice()` 활용
+// greatPeople.splice(0, 0, '정약용', '지석영')
+console.log(greatPeople);
+
+// 3. greatPeople 배열 끝 위치에 '김유신', '을지문덕'을 추가합니다.
+//     1. `push()` 활용
+// greatPeople.push('김유신', '을지문덕')
+//     2. `splice()` 활용
+// const lastGreatePeopleItem = greatPeople.at(-1)
+// const startIndex = greatPeople.indexOf(lastGreatePeopleItem)
+// console.log(startIndex)
+// greatPeople.splice(startIndex, 0, '김유신', '을지문덕')
+console.log(greatPeople);
+
+// 4. greatPeople 배열 시작 위치에서 '세종대왕', '이순신'을 제거합니다.
+//     1. `shift()` 활용
+// console.log(greatPeople.shift())
+// console.log(greatPeople.shift())
+//     2. `splice()` 활용
+// greatPeople.splice(0, 2)
+console.log(greatPeople);
+
+// 5. greatPeople 배열 끝 위치에서 '장영실', '신사임당'을 제거합니다.
+//     1. `pop()` 활용
+// console.log(greatPeople.pop())
+// console.log(greatPeople.pop())
+//     2. `splice()` 활용
+// greatPeople.splice(greatPeople.length - 2, 2)
+popMany(greatPeople, 2);
+console.log(greatPeople);
+
+function shiftMany(arrayObject, removeCount) {
+  // 함수 로직 작성
+  return arrayObject.splice(0, removeCount);
+}
+
+// 사용법
+const removedGreatePeople = shiftMany(greatPeople, 3);
+console.log(removedGreatePeople);
+console.log(greatPeople);
 
 // --------------------------------------------------------------------------
 // 린터(Linter) 점검 실습: 아래 코드의 '잠재적 버그'를 예측해보세요.
