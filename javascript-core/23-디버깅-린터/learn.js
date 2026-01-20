@@ -7,7 +7,6 @@
 // * 전문가 : 오류를 당연한 과정으로 받아들이고 침착하게 단서를 추적함
 // --------------------------------------------------------------------------
 
-
 // --------------------------------------------------------------------------
 // 성장 마인드셋 분석 실습
 // --------------------------------------------------------------------------
@@ -17,12 +16,10 @@
 // 2. "어디서 잘못됐을까?" 스스로 질문하며 메시지를 읽는다. ✅
 // 3. "분명 맞게 짰는데 왜 안 되지?"라며 운을 탓한다.
 
-
 // 설명:
 // 훌륭한 개발자가 되기 위해 필요한 핵심 역량은 '완벽한 코드 작성'이 아닙니다.
 // 오히려 자신의 실수를 빠르게 인정하고, 브라우저가 주는 메시지(단서)를 바탕으로
 // 문제를 해결해 나가는 '태도'와 '기술'이 실력을 결정짓습니다.
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
@@ -33,62 +30,60 @@
 // 4. "왜 안 되지?"라는 의문보다 "어떻게 작동하고 있지?"라는 분석이 먼저입니다.
 // --------------------------------------------------------------------------
 
-
 // 실습 1.
-const button = document.querySelector('.button')
+const button = document.querySelector(".button");
 
-button.addEventListener('click', e => {
-  console.log('버튼 클릭!')
-})
+button.addEventListener("click", () => {
+  console.log("버튼 클릭!");
+});
 
 // 실습 2.
-const saveButton = document.querySelector('#save-button')
+const saveButton = document.querySelector("#save-button");
 
-saveButton.addEventListener('click', () => {
-  alert('저장되었습니다!')
-})
+saveButton.addEventListener("click", () => {
+  alert("저장되었습니다!");
+});
 
 // 실습 3.
-const alarmButton = document.querySelector('.alarm-button')
+const alarmButton = document.querySelector(".alarm-button");
 
 const handleRing = function () {
-  window.alert('알림!')
+  window.alert("알림!");
   // 암묵적 undefined 반환
   // addEventListener에 undefined가 설정되도 오류가 출력되지 앟음
-}
+};
 
 // alarmButton.addEventListener('click', handleRing()/* callback 함수 설정 (⚠️ 실행하는 것이 아님!) */)
-alarmButton.addEventListener('click', handleRing)
-
+alarmButton.addEventListener("click", handleRing);
 
 // 실습 4.
-const submitButton = document.querySelector('.submit-button')
+const submitButton = document.querySelector(".submit-button");
 
-submitButton.addEventListener('click', () => {
-  console.log('제출 완료!')
-})
+submitButton.addEventListener("click", () => {
+  console.log("제출 완료!");
+});
 
 // 실습 5.
-const closeButton = document.querySelector('.close-btn')
+const closeButton = document.querySelector(".close-btn");
 
-closeButton.addEventListener('click', () => {
-  console.log('닫기 버튼 클릭!')
-})
+closeButton.addEventListener("click", () => {
+  console.log("닫기 버튼 클릭!");
+});
 
 // 실습 6.
-const cart = document.querySelector('[data-id="cart"]')
-const price = cart.querySelector('[data-id="price"]').textContent
-const quantity = cart.querySelector('[data-id="quantity"]').textContent
-const calcButton = cart.querySelector('[data-id="calc-button"]')
-const resultDisplay = cart.querySelector('[data-id="total-result"]')
+const cart = document.querySelector('[data-id="cart"]');
+const price = cart.querySelector('[data-id="price"]').textContent;
+const quantity = cart.querySelector('[data-id="quantity"]').textContent;
+const calcButton = cart.querySelector('[data-id="calc-button"]');
+const resultDisplay = cart.querySelector('[data-id="total-result"]');
 
-calcButton.addEventListener('click', () => {
-  const priceNumber = Number(price.replace(',', ''))
-  const quantityNumber = Number(quantity)
-  const total = priceNumber * quantityNumber
-  resultDisplay.textContent = total.toLocaleString() /* 숫자 값 -> Number 객체 메서드 활용 */
-})
-
+calcButton.addEventListener("click", () => {
+  const priceNumber = Number(price.replace(",", ""));
+  const quantityNumber = Number(quantity);
+  const total = priceNumber * quantityNumber;
+  resultDisplay.textContent =
+    total.toLocaleString(); /* 숫자 값 -> Number 객체 메서드 활용 */
+});
 
 // --------------------------------------------------------------------------
 // 실습: 린터(Linter) - 당신의 친절한 코드 교정 파트너
@@ -100,21 +95,31 @@ calcButton.addEventListener('click', () => {
 
 // [시나리오 01] 존재하지 않는 변수 사용 (ReferenceError 예방)
 // 아래 코드에서 'userName'에 빨간 줄이 뜬다면, 린터가 "선언되지 않았어요!"라고 외치는 중입니다.
+const userName = "야무";
+
 function greetUser() {
   // ⚠️ 린터가 'no-undef' 오류를 표시합니다.
-  // console.log('안녕하세요, ' + userName + '님!') 
+  console.log("안녕하세요, " + userName + "님!");
 }
 
+greetUser();
+
 // [시나리오 02] 선언만 하고 사용하지 않는 변수 (리소스 정리)
-// 'isLoggedIn' 변수 밑에 노란색 또는 빨간색 줄이 있나요? 
+// 'isLoggedIn' 변수 밑에 노란색 또는 빨간색 줄이 있나요?
 // 린터는 "안 쓸 거면 지워서 코드를 가볍게 만드세요"라고 조언합니다.
-const isLoggedIn = true 
+const isLoggedIn = true;
+
+if (isLoggedIn) {
+  console.log("로그인 되었어요!");
+}
 
 // [시나리오 03] 전역 변수(Global) 처리법
 // 브라우저 환경이 아닌 곳에서 'window'나 'document'를 쓰면 린터가 당황할 수 있습니다.
 // 그럴 때 상단에 주석을 달아 안심시켜주세요. (/* global document */)
-const title = document.querySelector('h1')
 
+/* global document, console, window, alert, window */
+const title = document.querySelector("h1");
+title.textContent = "린터 좋은 도구! ⚒️";
 
 // --------------------------------------------------------------------------
 // 린터 지능 향상 실습 (직접 고쳐보기)
@@ -130,7 +135,6 @@ const title = document.querySelector('h1')
 // data.forEach(item) => {
 //   render(item)
 // })
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
