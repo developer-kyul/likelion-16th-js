@@ -333,6 +333,53 @@ for (const property in teacher) {
   console.log(value);
 }
 
+// 객체 순환 (객체가 가진 속성을 모두 탐색해서 값을 확인)
+const points = {
+  x: 10,
+  y: 13,
+  z: 8,
+};
+
+const propName = "x"; // 'y', 'z'
+
+console.log("z" in points);
+console.log(points[propName]);
+console.log(points["x"]);
+
+for (const propName /* 'x', 'y', 'z' */ in points) {
+  console.log(propName);
+  // 값 = 객체['속성이름']
+  const value = points[propName]; // 'x', 'y', 'z'
+  console.log(value);
+}
+
+{
+  // 배열도 for...in문 사용 가능! (권장 안함, 비교적 느려서)
+  const personList = [
+    { name: "박주영", age: 22 },
+    { name: "최한나", age: 31 },
+    { name: "김상준", age: 29 },
+  ];
+
+  // for...of문
+  for (const person of personList) {
+    console.log(person);
+  }
+
+  // for...in문
+  // 배열에서 for...in문 사용할 수 있지만,
+  // 성능이 좋지 않으니까 객체에 양보하세요.
+  for (const index in personList) {
+    // []
+    // 0: {...}
+    // 1: {...}
+    // 2: {...}
+    console.log(index);
+    const person = personList[index];
+    console.log(person);
+  }
+}
+
 // --------------------------------------------------------------------------
 // 핵심 요약!
 // --------------------------------------------------------------------------
@@ -342,3 +389,101 @@ for (const property in teacher) {
 // 4. 객체의 속성을 훑을 때는 for...in을 사용합니다.
 // 5. break는 루프 탈출, continue는 이번 차례만 건너뛰기입니다.
 // --------------------------------------------------------------------------
+
+// --------------------------------------------------------------------------
+// 실습
+// --------------------------------------------------------------------------
+
+{
+  // 1. [짝수 출력] for 문을 사용해 1부터 100까지의 숫자 중, 짝수만 출력
+  // 2, 4, 6, ..., 100
+
+  for (let i = 1; i <= 100; ++i) {
+    if (i % 2 === 0) {
+      console.log(i);
+    }
+  }
+
+  for (let i = 0; i < 101; i = i + 2) {
+    if (i > 0) {
+      console.log(i);
+    }
+  }
+
+  // 2. [카운트다운] while 문을 사용해 숫자 10부터 1까지 역순으로 출력
+
+  let countDown = 11;
+
+  while (--countDown > 0) {
+    console.log(countDown);
+  }
+
+  // 3. [과일바구니] for … of 문을 사용해 다음 배열의 과일 출력
+  const fruits = ["사과", "바나나", "귤", "복숭아"];
+
+  for (const fruit of fruits) {
+    console.log(fruit);
+  }
+
+  // 4. [비밀번호 찾기] do … while 문을 사용해 입력된 비밀번호('3001') 매칭 검토 후 결과 출력
+  let i = 0;
+  let item; // undefined
+
+  const list = ["0124", "8291", "8259", "3001", "9073"];
+  const input = "3001";
+
+  do {
+    item = list[i];
+    // i = i + 1
+    // i += 1
+    i++;
+    console.log(item);
+  } while (input !== item);
+
+  console.log(item);
+
+  // attempt = attempts[i + 3]
+  // console.log(attempt)
+  // console.log(attempt === input)
+
+  // do {
+  // 먼저 수행할 일 (또는 반복해서 수행할 일)
+  // } while(조건)
+
+  // 5. [성적표 출력] for … in 문을 사용해 객체의 key, value 출력
+  const student = {
+    name: "선호",
+    grade: "A",
+    age: 22,
+  };
+
+  for (const key in student) {
+    console.log(key);
+    console.log(student[key]);
+  }
+
+  // 6. [까다로운 반복문] `1`부터 `20`까지 반복
+  //    - `5`부터 `10`까지는 건너띄고 나머지 출력
+  //    - `17`이 되면 반복 종료
+
+  // for, while, do...while
+  // for...of, for...in
+
+  for (let i = 1; i <= 20; ++i) {
+    if (i > 4 && i < 11) continue;
+    if (i === 17) break;
+    console.log(i);
+  }
+
+  const numbers =
+    "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20".split(
+      ", ",
+    );
+
+  for (const numString of numbers) {
+    const n = Number(numString);
+    if (n > 4 && n < 11) continue;
+    if (n === 17) break;
+    console.log(n);
+  }
+}
