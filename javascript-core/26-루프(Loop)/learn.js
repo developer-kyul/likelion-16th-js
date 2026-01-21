@@ -243,7 +243,7 @@ for (let i = webFrameworks.length - 1; i >= 0; i = i - 1) {
 }
 
 // --------------------------------------------------------------------------
-// for...of 문
+// for...of 문 (배열 또는 문자열 반복)
 // --------------------------------------------------------------------------
 
 for (const frameworkName of webFrameworks) {
@@ -271,9 +271,67 @@ for (let i = 0; i < personList.length; i++) {
   console.log(person.age);
 }
 
+const message = "오늘 하루 너무 추워요~";
+console.log(message.length);
+
+// message 문자열을 하나 하나 순환(반복)해서 값을 출력해보고 싶어요.
+// while, do...while, for, for...of
+
+for (const character of message) {
+  console.log(character);
+}
+
+// length 속성 가짐
+// 각 요소의 인덱스를 가짐
+// for (const character /* character = '~' */ of '오늘 하루 너무 추워요~') {
+//   console.log(character)
+// }
+
+for (let i = 0; i < message.length; i += 1) {
+  const character = message[i];
+  console.log(character);
+}
+
 // --------------------------------------------------------------------------
 // for...in 문 (객체 반복)
 // --------------------------------------------------------------------------
+
+// for...of는 반복 가능한 객체만 사용 가능
+// 일반 객체는 반복 가능하지 않아서 사용할 수 없어요
+
+const teacher = {
+  name: "김데레사",
+  age: 21,
+  career: 26,
+  subjects: ["웹 표준/접근성", "HTML", "CSS", "Tailwind CSS", "Sass"],
+};
+
+// teacher 객체를 반복(속성 별, 값을 출력)
+// for...of 문 쉽던데? 이걸 써볼까?
+// for (const property of teacher) {
+//   console.log(property)
+// }
+
+// 배열처럼 반복 가능한 객체만 for...of 문을 사용할 수 있어요.
+for (const instructor of [teacher]) {
+  console.log(instructor);
+}
+
+// 객체를 순환하려면 for...in 문을 사용하세요.
+
+// '속성' in 객체
+
+console.log(teacher);
+console.log("name" in teacher);
+console.log("subjects" in teacher);
+console.log("age" in teacher);
+console.log("career" in teacher);
+
+for (const property in teacher) {
+  const value = teacher[property];
+  console.log(property);
+  console.log(value);
+}
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
