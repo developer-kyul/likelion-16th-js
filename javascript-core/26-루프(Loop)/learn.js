@@ -7,35 +7,63 @@
 // * for...in : 객체 장부의 상세 정보(Key)를 확인합니다.
 // --------------------------------------------------------------------------
 
+// --------------------------------------------------------------------------
+// while 문
+// --------------------------------------------------------------------------
+
 const draw = (n) => "화면에 " + n + "번째 그림을 그리다.";
 
 // 화면에 [n]번 드로잉하고 싶다.
 let count = 0;
+const REPEAT_COUNT = 10; // n번
 
-count = count + 1; // 값 변경
-console.log(draw(count)); // 값 출력
+while (count < REPEAT_COUNT) {
+  count += 1;
+  // continue: [1], [2], 3, 4, [5]
+  // break: [1], [2], 3(중단)
 
-count = count + 1; // 값 변경
-console.log(draw(count)); // 값 출력
+  if (count >= 3 && count <= 4) {
+    continue; // 현재 코드에서 아래 코드 건너띄고 다시 while 조건 확인 이동
+  }
 
-count = count + 1; // 값 변경
-console.log(draw(count)); // 값 출력
+  if (count === 9) {
+    break; // 반복문 종료
+  }
 
-count = count + 1; // 값 변경
-console.log(draw(count)); // 값 출력
+  draw(count);
+  console.log(count); // 1, 2
+}
 
-count = count + 1; // 값 변경
-console.log(draw(count)); // 값 출력
+// 연명부
+const people = ["한돌", "두돌", "세돌", "네돌", "...", "백돌"];
+//                0      1      2     3 ,   ... , 100
 
-// --------------------------------------------------------------------------
-// while 문
-// --------------------------------------------------------------------------
+// 연명부를 반복 순환
+// 찾는 사람이 있다면 반복을 그만 멈춰라.
+const search = "백돌";
+
+// 반복문
+let index = 0,
+  personName = "";
+
+while (index < people.length /* 0 < 4 */) {
+  personName = people.at(index); // '한돌'
+  // 검색한 who와 personName이 같다면?
+  // 반복을 그만 멈춰라.
+  if (personName === search) {
+    break; // 반복문 중단
+  }
+  // 반복문 중단되면 아래 코드는 실행 안되요.
+  index += 1;
+}
+
+console.log(personName);
 
 // --------------------------------------------------------------------------
 // 조건(if) 문 vs 반복(while) 문
 // --------------------------------------------------------------------------
 
-// if...else 문 (조건 흐름 제어문)
+// if 문 (조건 흐름 제어문)
 // 조건: ifCount가 5보다 작을 경우 "참"
 // 조건이 "참"이면 코드 블록 1회 실행
 let ifCount = 0;
@@ -45,16 +73,28 @@ if (ifCount < 5) {
 }
 
 // while 문 (반복 흐름 제어문)
-// 조건: 반복횟수가 5보다 작을 경우 "참"
-// 조건이 "참"이면 코드 블록 반복 실행 (조건이 참일 동안)
-let iterationCount = 0;
-while (iterationCount < 5) {
-  // iterationCount = iterationCount + 1
-  // iterationCount += 1
-  // iterationCount++
-  console.log(++iterationCount);
+// 조건: whileCount가 5보다 작을 경우 "참"
+// 조건이 "참"일 동안, 코드 블록 반복 실행 🔄
+let whileCount = 0;
+let dontOver = true;
+while (dontOver) {
+  // whileCount = whileCount + 1
+  // whileCount += 1
+  // whileCount++
+  // console.log(++whileCount)
+  if (whileCount >= 5) {
+    dontOver = false;
+  }
+
+  console.log(whileCount);
+  whileCount += 2;
 }
 
+// ⚠️ 반복문이 멈추지 않으면???
+// JavaScript는 한 번에 하나의 일만 할 수 있어
+// 먼저한 일이 멈추지 않으면 다음 일을 하지 못해요.
+// "무한 반복(Infinite Loop)"에 빠지지 않게
+// 반복문 사용 시 주의가 필요합니다.
 console.log("언제 멈춰?? 😡");
 
 // --------------------------------------------------------------------------
