@@ -169,7 +169,7 @@ for (let i = 0; i <= 9; i++) {
 }
 
 // --------------------------------------------------------------------------
-// 배열 반복 (정순: 오름차순/역순: 내림차순)
+// 배열 반복 (정순(순방향): 오름차순/역순(역방향): 내림차순)
 // --------------------------------------------------------------------------
 
 const numbers = ["하나", "둘", "셋", "넷", "다섯", "여섯", "일곱"];
@@ -245,6 +245,31 @@ for (let i = webFrameworks.length - 1; i >= 0; i = i - 1) {
 // --------------------------------------------------------------------------
 // for...of 문
 // --------------------------------------------------------------------------
+
+for (const frameworkName of webFrameworks) {
+  console.log(frameworkName);
+}
+
+for (const n of [1, 2, 3, 10, 100, 1000, 1e8]) {
+  console.log(n);
+}
+
+const personList = [
+  { name: "박주영", age: 22 },
+  { name: "최한나", age: 31 },
+  { name: "김상준", age: 29 },
+];
+
+for (const person of personList) {
+  console.log(person.name);
+  console.log(person.age);
+}
+
+for (let i = 0; i < personList.length; i++) {
+  const person = personList[i];
+  console.log(person.name);
+  console.log(person.age);
+}
 
 // --------------------------------------------------------------------------
 // for...in 문 (객체 반복)
