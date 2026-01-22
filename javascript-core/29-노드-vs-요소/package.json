@@ -1,5 +1,9 @@
 {
   "scripts": {
     "dev": "bunx live-server --host=localhost --port=3000 --entry-file=learn.html --no-browser"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "htmlhint": "^1.8.0"
   }
 }
