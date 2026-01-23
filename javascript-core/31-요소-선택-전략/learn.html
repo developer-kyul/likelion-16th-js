@@ -5,13 +5,145 @@
     <meta charset="UTF-8" />
     <title>효율적인 요소 선택 전략: ID, Class, Tag, Attribute</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="문서의 요소를 선택하는 다양한 방법을 학습합니다." />
     <link rel="stylesheet" href="./assets/styles.css" />
+    <style>
+      .hidden {
+	      display: none;
+	    }
+
+      .cart-item {
+	      padding: 10px;
+	      border: 1px solid #ddd;
+	      margin-bottom: 5px;
+	      cursor: pointer;
+	
+	      /* 선택되었을 때 적용할 스타일 */
+		    &.selected {
+		      background-color: #e3f2fd;
+		      border-color: #2196f3;
+		      font-weight: bold;
+		    }
+	    }
+	    
+	    .button-group { margin-top: 20px; }
+    </style>
     <script src="./learn.js" defer></script>
   </head>
 
   <body>
 
     <main class="prose">
+
+      <article data-practice="1">
+        <h2>실습 1. 선택자를 활용해 요소 선택</h2>
+        <h1 id="main-title">안녕하세요!</h1>
+        <p class="description">이것은 설명입니다.</p>
+        <button type="button" data-role="confirm">확인</button>
+        <button type="button" class="button">클릭</button>
+      </article>
+
+      <script>
+        // --------------------------------------------------------------------------
+        // [실습 1] 선택자를 활용해 요소 선택
+        // --------------------------------------------------------------------------
+        // 1. `id` 속성으로 요소를 선택한 후, 콘솔에 출력합니다.
+        // 2. `class` 속성으로 요소를 선택한 후, 콘솔에 출력합니다.
+        // 3. `button` 태그 이름으로 모든 요소를 선택한 후, 콘솔에 출력합니다.
+        // 4. `data-role` 속성으로 요소를 선택한 후, 콘솔에 출력합니다.
+        // --------------------------------------------------------------------------
+
+        // querySelector
+        // getElementById ✅
+        const mainTitle = document.getElementById('main-title')
+        // console.log(mainTitle)
+
+        const practice1 = document.querySelector('[data-practice="1"]')
+        // console.log(practice1)
+
+        const hasClassAttrs = practice1.querySelectorAll('[class]')
+        // console.log(hasClassAttrs)
+
+        let allButtons = practice1.getElementsByTagName('button') 
+        // console.log(allButtons) // HTMLCollection
+        allButtons = practice1.querySelectorAll('button')
+        // console.log(allButtons) // NodeList
+
+        const confirmButton = practice1.querySelector('[data-role="confirm"]')
+        // console.log(confirmButton)
+
+      </script>
+
+      <article data-practice="2">
+        <h2>2. JS 훅을 활용해 요소 선택</h2>
+        <div class="notification js-notification">
+          📢 중요한 알림입니다!
+        </div>
+        <button type="button" class="js-hide-button">알림 숨기기</button>
+      </article>
+
+      <script>
+        // --------------------------------------------------------------------------
+        // [실습 2] JS 훅을 활용해 요소 선택
+        // --------------------------------------------------------------------------
+        // 1. JS 훅을 사용해 요소를 선택합니다.
+        // 2. `"알림 숨기기"` 버튼을 사용자가 누르면 알림 내용(`notification`)이 감춰지도록 설정합니다.
+        // --------------------------------------------------------------------------
+
+        {
+          const practice2 = document.querySelector('[data-practice="2"]')
+          const notification = practice2.querySelector('.js-notification')
+          const hideButton = practice2.querySelector('.js-hide-button')
+
+          hideButton.addEventListener('click', () => {
+            // notification.classList.toggle('hidden')
+            notification.classList.add('hidden')
+          })
+        }
+
+      </script>
+
+      <article data-practice="3">
+        <h2>3. 쇼핑 카트 '전체 선택'</h2>
+        <h3>🛒 장바구니</h3>
+        <ul class="cart-list">
+          <li class="cart-item">🍎 사과</li>
+          <li class="cart-item">🍌 바나나</li>
+          <li class="cart-item">🥛 우유</li>
+        </ul>
+        <div class="button-group" role="group">
+          <button type="button" id="select-all">전체 선택</button>
+        </div>
+      </article>
+
+      <script>
+        // --------------------------------------------------------------------------
+        // 3. 쇼핑 카트 '전체 선택'
+        // --------------------------------------------------------------------------
+        // 1. `id`를 사용하여 "전체 선택" 버튼을 선택하세요.
+        // 2. `class`를 사용하여 모든 "상품 아이템(.cart-item)"을 한 번에 선택하세요.
+        // 3. 버튼을 클릭하면, 모든 상품 아이템에 `selected` 클래스가 추가되도록 코드를 작성하세요.
+        // --------------------------------------------------------------------------
+
+        const selectAllButton = document.getElementById('select-all')
+        const cartItems = document.querySelectorAll('[data-practice="3"] .cart-item')
+
+        selectAllButton.addEventListener('click', () => {
+          // console.log(cartItems)
+          // 반복 처리
+          // for, while, for...of, forEach
+          // cartItems.forEach((item) => {
+          //   item.classList.add('selected')
+          // })
+
+          for (let i = 0, l = cartItems.length; i < l; ++i) {
+            const item = cartItems[i]
+            item.classList.add('selected')
+          }
+        })
+
+      </script>
+
       <article>
         <header>
           <h1>호텔 관리 마스터 키: 상황별 요소 선택 전략</h1>
