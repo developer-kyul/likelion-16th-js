@@ -12,7 +12,23 @@
 console.groupCollapsed('1. 기본 스타일 설정 (CamelCase)')
 
 // 이곳에 코드를 작성하세요.
+const box = document.querySelector('.box')
+const changeStyleButton = document.querySelector('.change-style-button')
 
+// changeStyleButton.addEventListener('click', () => {
+//   // 박스(Box) 요소에 스타일링 조작(설정)
+//   box.style.color = '#fff'
+
+//   // CSS 속성 이름을 카멜케이스로 변경
+//   box.style.backgroundColor = '#ed4c67'
+
+//   // CSS 속성 이름을 그대로 사용 + 대괄호 표기법
+//   // box.style['background-color'] = '#ed4c67'
+
+//   // 너비(width) 또는 높이(height) 변경
+//   box.style.width = 142 + 'px'
+
+// })
 
 console.groupEnd()
 
@@ -24,6 +40,22 @@ console.groupCollapsed('2. 사용자 정의 속성 설정 (Hyphen-case)')
 
 // 이곳에 코드를 작성하세요.
 
+console.dir(box.style) // CSSStyleDeclaration { setProperty }
+
+changeStyleButton.addEventListener('click', () => {
+  // box.style.color = '#fff'
+  box.style.setProperty('color', '#fff')
+  // box.style.backgroundColor = '#ed4c67'
+  box.style.setProperty('background-color', '#ed4c67', 'important')
+  // box.style.width = 142 + 'px'
+  box.style.setProperty('width', 142 + 'px')
+
+  // CSS 변수(커스텀 속성) style 속성으로 설정한다면?
+  // --border-color, --width, --height 변수 값을 변경
+  // box.style.--border-color = '#ed3c57'
+  // box.style['--border-color'] = '#ed3c57'
+  box.style.setProperty('--border-color', '#ed3c57')
+})
 
 console.groupEnd()
 
@@ -45,6 +77,6 @@ console.groupEnd()
 // 1. style 속성 접근: '요소.style.속성명'으로 접근하며, 이름은 카멜 케이스로 작성합니다.
 //    (예: background-color -> backgroundColor)
 // 2. 단위의 중요성: px, %, rem 등 단위를 생략하면 스타일이 적용되지 않습니다.
-// 3. setProperty()의 강점: CSS 변수(--)를 제어할 수 있고, 하이픈 케이스를 그대로 사용합니다.
+// 3. setProperty()의 강점: CSS 변수(--)를 제어할 수 있고, 케밥 케이스를 그대로 사용합니다.
 // 4. 우선순위: JS로 설정한 스타일은 HTML의 style 속성에 직접 삽입되어 CSS 파일보다 우선순위가 높습니다.
 // --------------------------------------------------------------------------

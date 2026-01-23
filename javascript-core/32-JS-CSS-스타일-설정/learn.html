@@ -4,14 +4,43 @@
   <head>
     <meta charset="UTF-8" />
     <title>스타일링 마스터: JavaScript로 CSS 제어하기</title>
+    <meta name="description" content="JS를 사용해 CSS 스타일을 동적으로 제어합니다. (인라인 스타일링)" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/styles.css" />
+    <style>
+      .box {
+        --border-color: #191919;
+        --background-color: #fff;
+        --width: 320px;
+        --height: 142px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        inline-size: 320px;
+        block-size: 142px;
+        margin-block: 20px;
+        border: 6px solid var(--border-color);
+        background-color: var(--background-color) !important;
+        border-radius: 12px;
+        font-size: 1.27rem;
+        font-weight: 600;
+        transition: all 0.4s ease-in-out;
+      }
+    </style>
     <script src="./learn.js" defer></script>
   </head>
 
   <body>
 
     <main class="prose">
+
+      <button type="button" class="change-style-button">요소 스타일 조작</button>
+
+      <div class="box">
+        박스(BOX)
+      </div>
+
       <article>
         <header>
           <h1>인테리어 전문가의 도구: style 속성 제어하기</h1>
