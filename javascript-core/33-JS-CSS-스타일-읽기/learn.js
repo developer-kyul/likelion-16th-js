@@ -6,38 +6,53 @@
 // 1. '.inline-box' 요소를 선택하세요.
 // 2. 이 요소의 style 속성을 사용하여 인라인으로 정의된 'font-size'와 'color'를 읽어 콘솔에 출력하세요.
 // 3. CSS 파일에만 정의된 'background-color'를 .style 속성으로 읽었을 때 무엇이 출력되는지 확인하세요.
-console.groupCollapsed('1. 인라인 스타일 읽기 (style 속성)')
+console.groupCollapsed("1. 인라인 스타일 읽기 (style 속성)");
 
 // 이곳에 코드를 작성하세요.
 
+const prose = document.querySelector(".prose");
+const targetElement = prose.querySelector("section:first-of-type h2");
+// console.log(targetElement)
+// console.log(targetElement.style.fontSize)
+// console.log(targetElement.style.cssText)
 
-console.groupEnd()
-
+console.groupEnd();
 
 // [실습] 계산된 스타일 읽기 (getComputedStyle 활용)
 // 1. '.computed-box' 요소를 선택하세요.
 // 2. getComputedStyle()을 사용하여 요소에 적용된 전체 스타일 객체를 가져오세요.
 // 3. 'background-color'와 'width' 값을 읽어 콘솔에 출력하세요.
 // 4. (확인) CSS에서 %나 em으로 설정한 값이 어떻게 출력되는지 관찰하세요.
-console.groupCollapsed('2. 계산된 스타일 읽기 (getComputedStyle)')
+console.groupCollapsed("2. 계산된 스타일 읽기 (getComputedStyle)");
 
 // 이곳에 코드를 작성하세요.
 
+const heading1 = prose.querySelector("h1");
+// console.log(heading1.style.cssText)
+const heading1ComputedStyle = getComputedStyle(heading1); // CSSStyleDeclaration
+// console.log(heading1ComputedStyle.getPropertyValue('font-size'))
+// console.log(heading1ComputedStyle.getPropertyValue('color'))
+// console.log(heading1ComputedStyle.getPropertyValue('letter-spacing'))
 
-console.groupEnd()
+const sizeUpButton = document.querySelector(".js-size-up-button");
+sizeUpButton.addEventListener("click", () => {
+  let currentFontSize = heading1ComputedStyle.getPropertyValue("font-size");
+  currentFontSize = parseInt(currentFontSize, 10);
+  const nextFontSize = currentFontSize + 8;
+  heading1.style.setProperty("font-size", nextFontSize + "px");
+});
 
+console.groupEnd();
 
 // [실습] 가상 요소 스타일 읽기 (Pseudo-elements)
 // 1. '.pseudo-box' 요소를 선택하세요.
 // 2. getComputedStyle()의 두 번째 인자를 활용하여 '::before' 가상 요소의 스타일을 가져오세요.
 // 3. 가상 요소의 'content'와 'color' 속성 값을 콘솔에 출력하세요.
-console.groupCollapsed('3. 가상 요소 스타일 읽기 (::before)')
+console.groupCollapsed("3. 가상 요소 스타일 읽기 (::before)");
 
 // 이곳에 코드를 작성하세요.
 
-
-console.groupEnd()
-
+console.groupEnd();
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
