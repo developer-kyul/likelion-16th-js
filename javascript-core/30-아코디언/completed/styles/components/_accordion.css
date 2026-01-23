@@ -11,6 +11,15 @@
   background-color: var(--background-color);
   color: var(--text-color);
 
+  &.is-open {
+    .accordion__indicator svg {
+      rotate: -45deg;
+    }
+    .accordion__content {
+      display: grid;
+    }
+  }
+  
   &::before {
     content: "";
     position: absolute;
@@ -18,20 +27,20 @@
     inline-size: var(--belt-width);
     background-color: var(--belt-color);
   }
-
+  
   &:first-child {
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
-
+    
     &::before {
       border-top-left-radius: var(--radius);
     }
   }
-
+  
   &:last-child {
     border-bottom-left-radius: var(--radius);
     border-bottom-right-radius: var(--radius);
-
+    
     &::before {
       border-bottom-left-radius: var(--radius);
     }
@@ -58,21 +67,7 @@
     }
   }
 
-  /* 
-   * 아코디언 클릭 시, 콘텐츠가 펼쳐지는 것을 확인하기 위한 용도 
-   * 실습 시에는 삭제하고 진행합니다.
-   */
-  /* &:hover {
-    .accordion__indicator > svg {
-      rotate: -45deg;
-    }
-    .accordion__content {
-      display: grid;
-    }
-  } */
-
   .accordion__content {
-    /* display로 조절 none, grid로 조절 */
     display: none;
     grid-template-columns: 7.5rem 1fr;
     grid-column-gap: 2rem;
@@ -86,3 +81,5 @@
     }
   }
 }
+
+
