@@ -6,13 +6,44 @@
     <title>속성 마스터: 요소의 크기와 위치 측정</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/styles.css" />
+    <style>
+      .box {
+        --size: 174px;
+
+        display: grid;
+        place-content: center;
+        inline-size: var(--size);
+        block-size: var(--size);
+        margin-block: 24px;
+        border: 8px solid currentColor;
+        color: #1f1010;
+        font-size: 3.2rem;
+        font-weight: 800;
+      }
+
+      .button {
+        cursor: pointer;
+        background-color: #1f1010;
+        color: #fff;
+        border: 0;
+        padding: 0.5em 1em;
+        border-radius: 3px;
+      }
+    </style>
     <script src="./learn.js" defer></script>
   </head>
 
   <body>
-    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <a href="#main-content" class="sr-only focusable">본문 바로가기</a>
 
     <main id="main-content" class="prose">
+
+      <button type="button" class="button get-bounding-client-rect">
+        box.getBoundingClientRect()
+      </button>
+
+      <div class="box">BOX</div>
+
       <header>
         <h1>요소의 크기와 위치 측정</h1>
         <p>

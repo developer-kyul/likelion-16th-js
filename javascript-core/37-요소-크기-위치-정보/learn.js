@@ -5,9 +5,33 @@
 // [실습] 뷰포트 기준 좌표 및 크기 측정
 // 1. 대상 요소(element)의 getBoundingClientRect() 메서드를 호출하고 결과를 변수에 할당하세요.
 // 2. 반환된 객체에서 top, left, width, height 값을 콘솔에 출력하는 로직을 작성하세요.
-console.groupCollapsed('getBoundingClientRect() 기본 측정')
+console.group('getBoundingClientRect() 기본 측정')
 
-// 이곳에 코드를 작성하세요.
+const boxElement = document.querySelector('.box')
+const boundingRectButton = document.querySelector('.get-bounding-client-rect')
+
+boundingRectButton.addEventListener('click', () => {
+  const boxRect = boxElement.getBoundingClientRect()
+  console.log(boxRect)
+})
+
+// 난수(random inteager)를 반환하는 함수 (추상화)
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min
+}
+
+
+// 임의의 위치로 이동
+
+let randomX = getRandomInt(24, 111), 
+    randomY = getRandomInt(37, 129)
+console.log('randomX =', randomX)
+console.log('randomY =', randomY)
+
+boxElement.style.cssText = `
+  transform: translateX(` + randomX +`px) translateY(`+ randomY +`px);
+  background-color: #fff;
+`
 
 console.groupEnd()
 
