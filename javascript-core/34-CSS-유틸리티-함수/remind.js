@@ -8,9 +8,10 @@
 // - 재귀 호출
 // --------------------------------------------------------------------------
 
-const prose = document.querySelector(".prose");
-const heading = prose.querySelector("h2:first-of-type");
+const prose = document.querySelector('.prose')
+const heading = prose.querySelector('h2:first-of-type')
 // console.log(heading)
+
 
 // [스타일 읽기]
 
@@ -18,43 +19,47 @@ const heading = prose.querySelector("h2:first-of-type");
 // const warnTest1 = getStyle()
 // const warnTest2 = getStyle(heading)
 
-const headingColor = css(heading, "color");
-const headingFontSize = css(heading, "font-size");
-console.log(headingColor, headingFontSize);
+const headingColor = css(heading, 'color')
+const headingFontSize = css(heading, 'font-size')
+console.log(headingColor, headingFontSize)
+
 
 // [스타일 쓰기]
 
-const headingFontSizeValue = parseFloat(headingFontSize) + 64;
+const headingFontSizeValue = parseFloat(headingFontSize) + 64
 
-css(heading, "font-size", headingFontSizeValue + "px");
+css(heading, 'font-size', headingFontSizeValue + 'px')
 
 // [스타일 삭제]
 setTimeout(() => {
-  console.log("마지막 인자로 null이 전달. 개발자의 의도는 삭제!");
-  css(heading, "font-size", null);
-}, 3000);
+  console.log('마지막 인자로 null이 전달. 개발자의 의도는 삭제!')
+  css(heading, 'font-size', null)
+}, 3000)
+
 
 // [편리한 스타일 설정! (객체 전달)]
 
 css(heading, {
-  color: "#ffcb29",
-  "background-color": "#1e2433",
-  "letter-spacing": "0.24px",
-  "text-decoration": "overline",
-});
+  'color': '#ffcb29',
+  'background-color': '#1e2433',
+  'letter-spacing': '0.24px',
+  'text-decoration': 'overline',
+})
+
 
 // --------------------------------------------------------------------------
 
-/**
+
+/** 
  * 요소의 스타일 속성 값을 가져옵니다.
  * @param {HTMLElement} element - 스타일을 가져올 HTML 요소
  * @param {string} propertyName - 가져올 CSS 속성 이름
  * @returns {string} 요청한 CSS 속성의 값
  */
 function getStyle(element, propertyName) {
-  const elementStyles = getComputedStyle(element);
-  const value = elementStyles.getPropertyValue(propertyName);
-  return value;
+  const elementStyles = getComputedStyle(element)
+  const value = elementStyles.getPropertyValue(propertyName)
+  return value
 }
 
 /**
@@ -64,7 +69,7 @@ function getStyle(element, propertyName) {
  * @param {string|number} propertyValue - 설정할 CSS 속성 값
  */
 function setStyle(element, propertyName, propertyValue) {
-  element.style.setProperty(propertyName, propertyValue);
+  element.style.setProperty(propertyName, propertyValue)
 }
 
 /**
@@ -73,7 +78,7 @@ function setStyle(element, propertyName, propertyValue) {
  * @param {string} propertyName - 제거할 CSS 속성 이름
  */
 function removeStyle(element, propertyName) {
-  element.style.removeProperty(propertyName);
+  element.style.removeProperty(propertyName)
 }
 
 /**
@@ -88,30 +93,30 @@ function css(element, propertyOrProperties, propertyValue) {
   // 조건 : 두 번째 인자의 타입이 객체인 경우 → 객체 속성:값 순환(반복) → 재귀 호출
   if (isObject(propertyOrProperties)) {
     // 객체 속성(key):값(value) 순환(반복) 처리
-    const properties = propertyOrProperties;
+    const properties = propertyOrProperties
     /* { key: value } */
     /* value = properties[key] */
-    for (const prop in properties) {
-      const value = properties[prop];
+    for(const prop in properties) {
+      const value = properties[prop]
       // css(요소, 속성 이름, 속성 값)
       // console.log(element, prop, value)
       // 재귀 호출 (나 자신을 다시 부르자! 왜? 결국은 내가 그 일을 하는 기능이니까)
-      css(element, prop, value);
+      css(element, prop, value)
     }
   }
 
   if (propertyValue === undefined) {
     // 스타일 속성 값 읽기 (값 반환)
-    return getStyle(element, propertyOrProperties);
+    return getStyle(element, propertyOrProperties)
   }
-
+  
   if (propertyValue === null) {
     // 스타일 속성 삭제
-    removeStyle(element, propertyOrProperties);
+    removeStyle(element, propertyOrProperties)
   }
 
   // 스타일 속성 설정
-  setStyle(element, propertyOrProperties, propertyValue);
+  setStyle(element, propertyOrProperties, propertyValue)
 }
 
 // --------------------------------------------------------------------------
@@ -127,7 +132,7 @@ function css(element, propertyOrProperties, propertyValue) {
  * @returns {boolean} 객체 여부
  */
 function isObject(data) {
-  return typeof data === "object" && data !== null && !Array.isArray(data);
+  return typeof data === 'object' && data !== null && !Array.isArray(data)
 }
 
 /**
@@ -137,5 +142,5 @@ function isObject(data) {
  */
 // eslint-disable-next-line no-unused-vars
 function isElement(node) {
-  return node && node.nodeType === document.ELEMENT_NODE;
+  return node && node.nodeType === document.ELEMENT_NODE
 }

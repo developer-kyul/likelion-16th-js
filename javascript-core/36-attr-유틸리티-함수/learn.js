@@ -5,45 +5,50 @@
 // [실습] getAttr() 함수
 // 1. 요소(element)와 속성 이름(attributeName)을 인자로 받습니다.
 // 2. getAttribute()를 사용하여 요소의 속성 값을 반환하는 로직을 작성하세요.
-console.groupCollapsed('getAttr() 함수 작성')
+console.groupCollapsed("getAttr() 함수 작성");
 
 // 이곳에 코드를 작성하세요.
+const prose = document.querySelector(".prose");
 
-console.groupEnd()
+prose.getAttribute("prose");
+console.log(prose);
 
+console.groupEnd();
 
 // [실습] setAttr() 함수
 // 1. 요소, 속성 이름, 속성 값을 인자로 받습니다.
 // 2. 요소의 setAttribute() 메서드를 사용해 값을 설정하세요.
 // 3. 메서드 체이닝이 가능하도록 요소를 반환(return)하세요.
-console.groupCollapsed('setAttr() 함수 작성')
+console.groupCollapsed("setAttr() 함수 작성");
 
 // 이곳에 코드를 작성하세요.
+prose.setAttribute("prose", "true");
+console.log(prose);
 
-console.groupEnd()
-
+console.groupEnd();
 
 // [실습] removeAttr() 함수
 // 1. 요소, 속성 이름 값을 인자로 받습니다.
 // 2. 요소의 removeAttribute() 메서드를 활용하세요.
 // 3. 메서드 체이닝이 가능하도록 요소를 반환(return)하세요.
-console.groupCollapsed('removeAttr() 함수 작성')
+console.groupCollapsed("removeAttr() 함수 작성");
+
+prose.removeAttribute("prose");
+console.log(prose);
 
 // 이곳에 코드를 작성하세요.
 
-console.groupEnd()
-
+console.groupEnd();
 
 // [실습] attr() 함수
 // 1. 위에서 작성한 getAttr, setAttr, removeAttr을 내부에서 활용하세요.
 // 2. attributeName이 객체({})인 경우, 재귀 호출을 통해 여러 속성을 한 번에 적용하세요.
 // 3. attributeValue가 null이면 '삭제', 값이 있으면 '설정', 없으면 '읽기'를 수행하세요.
-console.groupCollapsed('attr() 함수 작성')
+console.groupCollapsed("attr() 함수 작성");
 
 // 이곳에 코드를 작성하세요.
 
-console.groupEnd()
-
+console.groupEnd();
 
 // --------------------------------------------------------------------------
 // 핵심 요약!

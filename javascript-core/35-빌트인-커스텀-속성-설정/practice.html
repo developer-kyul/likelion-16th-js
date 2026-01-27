@@ -1,0 +1,62 @@
+```html
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>속성 설정, 읽기, 제거 실습</title>
+    <style>
+      .product {
+        border: 1px solid #ccc;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
+
+      .button {
+        margin-right: 0.5rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="product" data-name="Red Sneakers" data-stock="3">
+      🛍️ 제품: <span class="name">레드 스니커스</span><br />
+      📦 재고: <span class="stock">3</span>
+    </div>
+
+    <button type="button" class="button" id="read">속성 읽기</button>
+    <button type="button" class="button" id="update">재고 수정</button>
+    <button type="button" class="button" id="remove">속성 제거</button>
+
+    <script>
+      {
+        //문서에서 제어할 요소를 찾아 변수에 할당
+        const readButton = document.getElementById("read");
+        const updateButton = document.getElementById("update");
+        const removeButton = document.getElementById("remove");
+
+        // 1. "속성 읽기" 버튼 클릭 시, 제품의 커스텀 속성을 읽어 콘솔 패널에 출력합니다. (`getAttribute` 활용)
+        // 2. "속성 읽기" 버튼 클릭 시, 제품의 커스텀 속성을 읽어 콘솔 패널에 출력합니다. (`dataset` 활용)
+        // 3. "재고 수정" 버튼 클릭 시, 현재 재고 값에 2를 더한 값으로 설정하고 "📦 재고: 5"로 화면에 반영합니다.
+        // 4. "속성 제거" 버튼 클릭 시, 제품 `data-stock` 속성을 제거하고, "📦 재고: 없음"으로 화면에 반영합니다.
+
+        // 1. "속성 읽기" 버튼 클릭 시, 제품의 커스텀 속성을 읽어 콘솔 패널에 출력합니다. (`getAttribute` 활용)
+        // 2. "속성 읽기" 버튼 클릭 시, 제품의 커스텀 속성을 읽어 콘솔 패널에 출력합니다. (`dataset` 활용)
+        readButton.addEventListener("click", () => {
+          console.log("속성 읽기");
+        });
+
+        // 3. "재고 수정" 버튼 클릭 시, 현재 재고 값에 2를 더한 값으로 설정하고 "📦 재고: 5"로 화면에 반영합니다.
+        updateButton.addEventListener("click", () => {
+          console.log("재고 수정");
+        });
+
+        // 4. "속성 제거" 버튼 클릭 시, 제품 `data-stock` 속성을 제거하고, "📦 재고: 없음"으로 화면에 반영합니다.
+        removeButton.addEventListener("click", () => {
+          console.log("속성 제거");
+        });
+      }
+    </script>
+  </body>
+</html>
+```
