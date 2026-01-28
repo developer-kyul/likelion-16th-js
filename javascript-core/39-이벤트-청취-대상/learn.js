@@ -6,72 +6,76 @@
 // 1. 일반 함수(function)를 이벤트 리스너 콜백으로 등록하세요.
 // 2. 함수 내부에서 this가 가리키는 대상의 배경색을 변경하는 로직을 작성하세요.
 // 3. 주의: 화살표 함수를 사용할 때와의 차이점을 콘솔로 확인해 보세요.
-console.groupCollapsed("this 키워드 활용 실습");
+console.groupCollapsed('this 키워드 활용 실습')
 
-const jsToggleButton = document.querySelector(".js-button-toggle");
-jsToggleButton.addEventListener("click", handleChangeBGColor);
+const jsToggleButton = document.querySelector('.js-button-toggle')
+jsToggleButton.addEventListener('click', handleChangeBGColor)
 
 function handleChangeBGColor() {
-  console.log("this =", this); // HTMLButtonElement: <button>
+  console.log('this =', this) // HTMLButtonElement: <button>
   // console.log(this === jsToggleButton) // true
 
   // 시각 디자인
-  this.style.setProperty("background-color", "#c3a6ff");
+  this.style.setProperty('background-color', '#c3a6ff')
   // [접근성 고려] 프레스(press) 상태 전환
-  if (this.getAttribute("aria-pressed") === "false") {
-    this.setAttribute("aria-pressed", "true");
+  if (this.getAttribute('aria-pressed') === 'false') {
+    this.setAttribute('aria-pressed', 'true')
   } else {
-    this.setAttribute("aria-pressed", "false");
+    this.setAttribute('aria-pressed', 'false')
   }
 }
 
 // 요약!!
 // 조건: addEventListener() 메서드의 리스너 함수를 화살표 함수 표현식으로 작성한 경우
-// 상황: ⚠️ this는 이벤트가 발생한 대상이 아니게 됩니다.
-//      ✅ 이벤트 객체의 currentTarget 속성은 항상 이벤트가 발생한 대상을 가리킵니다.
+// 상황: ⚠️ this는 이벤트가 발생한 대상이 아니게 됩니다. 
+//      ✅ 이벤트 객체의 currentTarget 속성은 항상 이벤트가 발생한 대상을 가리킵니다.  
 
-jsToggleButton.addEventListener("mouseenter", (e) => {
+jsToggleButton.addEventListener('mouseenter', (e) => {
   // 이벤트 객체(Event Object)
   // addEventListener()에 전달된 콜백 함수에 전달됩니다.
   // (e) => {}
   // console.log(e) // MouseEvent {}
-  console.log(e.currentTarget); // 현재 addEventListener()에 연결된 대상 (문서 객체: 요소)
+  console.log(e.currentTarget) // 현재 addEventListener()에 연결된 대상 (문서 객체: 요소)
 
   // this
   // 화살표 함수 표현식 내부
   // 그러면 화살표 함수 식 안에서 this는? 무엇을 가리키는가?
   // console.log(this) // ⚠️ this !== jsToggleButton
-});
+})
 
-console.groupEnd();
+console.groupEnd()
+
 
 // [실습] e.currentTarget을 사용한 요소 참조
 // 1. 이벤트 리스너 콜백의 첫 번째 인자로 이벤트 객체(e)를 받으세요.
 // 2. e.currentTarget 속성을 사용하여 이벤트를 수신한 요소에 접근하세요.
 // 3. 변수 이름(button, someButton 등)에 상관없이 동작하도록 로직을 작성하세요.
-console.groupCollapsed("e.currentTarget 활용 실습");
+console.groupCollapsed('e.currentTarget 활용 실습')
 
 // 이곳에 코드를 작성하세요.
 
-console.groupEnd();
+console.groupEnd()
+
 
 // [실습] 화살표 함수에서의 요소 참조 (방어적 프로그래밍)
 // 1. 화살표 함수 내부에서 this를 사용했을 때 어떤 결과가 나오는지 테스트하세요.
 // 2. 화살표 함수를 사용하면서도 요소를 안전하게 참조하기 위해 e.currentTarget을 활용하세요.
-console.groupCollapsed("화살표 함수와 요소 참조");
+console.groupCollapsed('화살표 함수와 요소 참조')
 
 // 이곳에 코드를 작성하세요.
 
-console.groupEnd();
+console.groupEnd()
+
 
 // [실습] 변수 이름 독립성 테스트 (Refactoring)
 // 1. 외부 함수를 선언하고 이를 여러 버튼의 이벤트 리스너로 등록하세요.
 // 2. 함수 내부에서 특정 변수명이 아닌 '참조 키워드'를 사용하여 재사용 가능한 코드를 만드세요.
-console.groupCollapsed("재사용 가능한 핸들러 작성");
+console.groupCollapsed('재사용 가능한 핸들러 작성')
 
 // 이곳에 코드를 작성하세요.
 
-console.groupEnd();
+console.groupEnd()
+
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
