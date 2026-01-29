@@ -1,0 +1,109 @@
+// --------------------------------------------------------------------------
+// 실습: 빠른 반환 (Early Return) 패턴
+// --------------------------------------------------------------------------
+
+const mainContainer = document.getElementById('main-content')
+
+// --------------------------------------------------------------------------
+// 중첩된 코드 줄이기 
+
+// 이벤트 위임 (버블링)
+mainContainer.addEventListener('click', (e) => {
+  const target = e.target.closest('[aria-labelledby="benefit"]')
+  console.log(target)
+
+  // 문서에서 대상(요소)이 없는데?
+  // 무슨 일을 더해? 여기서 함수 실행을 중단하자. (효과적, 능률 향상)
+  if (!target) return // 빠른 반환(Early Return)
+
+  if (target) {
+    console.log('요소가 있으니 할 일을 하자. 1')
+    console.log('요소가 있으니 할 일을 하자. 2')
+    console.log('요소가 있으니 할 일을 하자. 3')
+    console.log('요소가 있으니 할 일을 하자. 4')
+    console.log('요소가 있으니 할 일을 하자. 5')
+    console.log('요소가 있으니 할 일을 하자. 6')
+  }
+
+  console.log('요소가 없어도 다른 일 할 수 있지. 1')
+  console.log('요소가 없어도 다른 일 할 수 있지. 2')
+  console.log('요소가 없어도 다른 일 할 수 있지. 3')
+  console.log('요소가 없어도 다른 일 할 수 있지. 4')
+})
+
+// --------------------------------------------------------------------------
+// else if 조건문 → if 조건문 + 빠른 반환
+
+let gift
+let score = 45
+
+if (score === 100) {
+	gift = '노트북'
+} else if (score > 75) {
+	gift = '태블릿'
+} else if (score > 50) {
+	gift = '스마트폰'
+} else {
+	gift = null
+}
+
+console.log(gift)
+
+function getGift(score) {
+  if (score === 100) return '노트북'
+  if (score > 75) return '태블릿'
+  if (score > 50) return '스마트폰'
+  return '선물 없다. 공부 더 해라!'
+}
+
+console.log(getGift(45))
+console.log(getGift(76))
+console.log(getGift(82))
+console.log(getGift(100))
+
+
+
+
+
+// [실습] 중첩된 코드 줄이기 (이벤트 처리)
+// 1. 가상의 리스트 요소(container)에 클릭 이벤트를 설정하세요.
+// 2. e.target.closest('li')를 사용하여 클릭된 대상을 찾으세요.
+// 3. 요소가 없을 경우(!target) 즉시 return하여 이후 로직이 실행되지 않게 하세요.
+// 4. 요소가 있을 경우에만 배경색을 변경하는 로직을 작성하세요.
+console.groupCollapsed('중첩 줄이기: Early Return 적용')
+
+// 이곳에 코드를 작성하세요.
+
+console.groupEnd()
+
+
+// [실습] else if 제거하기 (함수형 로직)
+// 1. 점수(score)에 따라 등급(A, B, C, F)을 반환하는 getGrade 함수를 만드세요.
+// 2. else if를 사용하지 않고 오직 if문과 return만 사용하여 로직을 구성하세요.
+// 3. 한 줄로 표현 가능한 경우 중괄호를 생략하여 작성해 보세요.
+console.groupCollapsed('else if 제거: 다중 조건 처리')
+
+// 이곳에 코드를 작성하세요.
+
+console.groupEnd()
+
+
+// [실습] 방어적 프로그래밍 (Guard Clauses)
+// 1. 숫자의 제곱을 구하는 square 함수를 만드세요.
+// 2. 인자가 숫자가 아닐 경우(typeof !== 'number') 에러 메시지를 반환하며 즉시 종료하세요.
+// 3. 유효한 경우에만 결과값을 반환하세요.
+console.groupCollapsed('방어적 프로그래밍 실습')
+
+// 이곳에 코드를 작성하세요.
+
+console.groupEnd()
+
+
+// --------------------------------------------------------------------------
+// 핵심 요약!
+// --------------------------------------------------------------------------
+// 1. 가드 클로저(Guard Clause): 잘못된 조건이나 예외 상황을 입구에서 미리 걸러내는 방식입니다.
+// 2. 가독성: else 문이 사라지면 들여쓰기 깊이(Depth)가 얕아져 코드를 읽기 훨씬 편해집니다.
+// 3. 유지보수: 특정 조건에 대한 로직이 독립적으로 존재하므로 수정과 확장이 용이합니다.
+// 4. 팁: return 이후의 코드는 절대 실행되지 않는다는 점을 활용해 '안전 장치'로 쓰세요!
+// --------------------------------------------------------------------------
