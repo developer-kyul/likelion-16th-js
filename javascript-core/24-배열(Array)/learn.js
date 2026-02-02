@@ -7,14 +7,15 @@
 // * .at() : 뒤에서부터 방을 찾을 수 있는 만능 마스터 키
 // --------------------------------------------------------------------------
 
+
 // --------------------------------------------------------------------------
 // 배열 객체 생성
 // --------------------------------------------------------------------------
 
 // const members = [] // 배열 객체 (Array Object)
-const shoppingCart = ["김", "참치", "오이", "단무지", "맛살"];
+const shoppingCart = [ '김', '참치', '오이', '단무지', '맛살' ]
 
-console.log(shoppingCart);
+console.log(shoppingCart)
 
 // JavaScript 생성자 함수 (Constructor: 객체 생성하는 함수)
 // 요구사항: 배열(Array) 객체를 생성하고 싶다.
@@ -26,11 +27,12 @@ console.log(shoppingCart);
 // new Boolean() or !!
 // BigInt(10) or 10n
 
-const likeLionMembers = new Array("야무", "파랑", "노랑");
-console.log(likeLionMembers);
+const likeLionMembers = new Array('야무', '파랑', '노랑')
+console.log(likeLionMembers)
 
-const likeLionMembersArray = ["야무", "파랑", "노랑"];
-console.log(likeLionMembersArray);
+const likeLionMembersArray = ['야무', '파랑', '노랑']
+console.log(likeLionMembersArray)
+
 
 // --------------------------------------------------------------------------
 // 다양한 값 담기
@@ -38,7 +40,7 @@ console.log(likeLionMembersArray);
 
 const allDatas = [
   2026, // 숫자 값 (0)
-  "2026년", // 문자 값 (1)
+  '2026년', // 문자 값 (1)
   true, // 논리 값 (2)
   null, // null 값 (3)
   undefined, // undefined 값 (4)
@@ -46,32 +48,34 @@ const allDatas = [
   BigInt(2026), // BigInt 값 (6)
   {}, // new Object(), // 생성된 객체 (7)
   [], // new Array(), // 생성된 배열 (객체) (8)
-  function () {}, // new Function(), // 생성된 함수 (객체) (9)
-];
+  function() {} // new Function(), // 생성된 함수 (객체) (9)
+]
 
-console.log(allDatas);
+console.log(allDatas)
+
 
 // --------------------------------------------------------------------------
 // 배열이 포함하는 항목의 총 개수
 // --------------------------------------------------------------------------
 
-const allDatasCount = allDatas.length;
-console.log(allDatasCount);
+const allDatasCount = allDatas.length
+console.log(allDatasCount)
+
 
 // --------------------------------------------------------------------------
 // 배열 항목 꺼내기 (항목의 위치를 인덱스로 가져옴)
 // --------------------------------------------------------------------------
 
-const firstData = allDatas[0];
-console.log(firstData, typeof firstData);
-const thirdData = allDatas[3 - 1];
-console.log(thirdData, typeof thirdData);
+const firstData = allDatas[0]
+console.log(firstData, typeof firstData)
+const thirdData = allDatas[3 - 1]
+console.log(thirdData, typeof thirdData)
 
-const unknownData = allDatas[100];
-console.log(unknownData);
+const unknownData = allDatas[100]
+console.log(unknownData)
 
-if (!unknownData) {
-  console.log("allDatas는 100번째 인덱스가 없어요!");
+if(!unknownData) {
+  console.log('allDatas는 100번째 인덱스가 없어요!')
 }
 
 // --------------------------------------------------------------------------
@@ -79,91 +83,86 @@ if (!unknownData) {
 // --------------------------------------------------------------------------
 
 // 전통적이고, 많이 사용되던 방법
-let lastData = allDatas[allDatasCount - 1];
-console.log(lastData);
-console.log(typeof lastData);
+let lastData = allDatas[allDatasCount - 1]
+console.log(lastData)
+console.log(typeof lastData)
 
 // 오늘날 사용 가능한 세련된 방법 (권장)
-lastData = allDatas.at(-1);
-console.log(lastData);
-console.log(typeof lastData);
+lastData = allDatas.at(-1)
+console.log(lastData)
+console.log(typeof lastData)
+
 
 // --------------------------------------------------------------------------
 // 배열 인덱스의 항목 수정
 // --------------------------------------------------------------------------
 
 // 인덱스를 사용해 새 항목 추가
-console.log(allDatas[9]); // [숫자(0), ..., 함수(9)]
-allDatas[10] = "add item"; // [숫자(0), ..., 함수(9), 문자(10)]
-console.log(allDatas);
-console.log(allDatas.length);
+console.log(allDatas[9]) // [숫자(0), ..., 함수(9)]
+allDatas[10] = 'add item' // [숫자(0), ..., 함수(9), 문자(10)]
+console.log(allDatas)
+console.log(allDatas.length)
 
 // ✅ 좋은 습관
-allDatas[allDatas.length] = "멋사 16기!!";
+allDatas[allDatas.length] = '멋사 16기!!'
 
 // ❌ 나쁜 습관 (메모리 낭비, 버그 유발 가능성 높음)
 // allDatas[12] = '멋사 16기!!'
 
-console.log(allDatas);
+console.log(allDatas)
+
 
 // 인덱스를 사용해 항목 수정
 // 1번 인덱스의 값을 수정
 
 // 1번방의 항목 가져오기(읽기)
-const secondItem = allDatas[1];
-console.log(secondItem);
+const secondItem = allDatas[1]
+console.log(secondItem)
 
 // 1번방에 계산된 값 항목으로 설정하기(쓰기)
-allDatas[1] = parseInt(secondItem, 10);
-console.log(allDatas);
+allDatas[1] = parseInt(secondItem, 10)
+console.log(allDatas)
+
+
 
 // --------------------------------------------------------------------------
 // 린터(Linter) 점검 실습: 아래 코드의 '빨간 줄' 원인을 찾아보세요.
 // --------------------------------------------------------------------------
 
-const cart = ["두부", "양파", "대파"];
+const cart = ['두부', '양파', '대파']
 
 // // ⚠️ 여기서 린터가 'no-const-assign' 경고를 보냅니다.
 // cart = ['계란', '우유']
 
-console.log(cart);
+console.log(cart)
 
 // 배열 값 비우기(모두 제거)
-cart.length = 0;
-console.log(cart);
+cart.length = 0
+console.log(cart)
 
 // 새 값으로 채우기 ('계란', '우유')
-cart[0] = "계란";
-cart[1] = "우유";
-console.log(cart);
+cart[0] = '계란'
+cart[1] = '우유'
+console.log(cart)
 
 // --------------------------------------------------------------------------
 // 실습 풀이
 // --------------------------------------------------------------------------
-// 1. 빈 배열을 생성합니다.
-// 2. 3개의 항목을 포함하는 배열을 작성합니다.
-// 3. `instructors` 배열에서 `"야무"` 항목을 가져와 `yamoo9` 변수에 할당합니다.
-// 4. `instructors` 배열에서 `"슬비"` 항목 값을 `"김데리사"`로 변경합니다.
-
-// const instructors = ["야무", "슬비"];
-// instructors[0] = "yamoo9";
-// instructors[1] = "김데리사";
-// console.log(instructors);
 
 // 정석적 방식으로 배열 객체 생성
 // const webTechniques = new Array('HTML', 'CSS', 'JavaScript')
-const webTechniques = [];
-webTechniques[webTechniques.length] = "HTML";
-webTechniques[webTechniques.length] = "CSS";
-webTechniques[webTechniques.length] = "JavaScript";
-console.log(webTechniques);
+const webTechniques = []
+webTechniques[webTechniques.length] = 'HTML'
+webTechniques[webTechniques.length] = 'CSS'
+webTechniques[webTechniques.length] = 'JavaScript'
+console.log(webTechniques)
 
-const instructors = ["야무", "슬비"];
-console.log(instructors);
+const instructors = ['야무', '슬비']
+console.log(instructors)
 
-const yamoo9 = instructors[0];
-console.log(yamoo9);
+const yamoo9 = instructors[0]
+console.log(yamoo9)
 
-instructors[1] = "김데레사";
-console.log(instructors[1]);
-console.log(instructors);
+instructors[1] = '김데레사'
+console.log(instructors[1])
+console.log(instructors)

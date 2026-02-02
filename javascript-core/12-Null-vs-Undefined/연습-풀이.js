@@ -12,17 +12,18 @@
 // 6. book 객체의 author 속성 출력 (존재하지 않는 속성)
 
 // [작성 공간]
-let myVariable;
+let myVariable
 
-console.log(myVariable);
-console.log(typeof myVariable);
+console.log(myVariable)
+console.log(typeof myVariable)
 
 const book = {
-  title: "자바스크립트 입문",
-};
+  title: '자바스크립트 입문'
+}
 
-console.log(book.title);
-console.log(book.author);
+console.log(book.title)
+console.log(book.author)
+
 
 // --------------------------------------------------------------------------
 // 연습 문제: Null 사용하기
@@ -41,21 +42,22 @@ console.log(book.author);
 // 6. product 객체 출력
 
 // [작성 공간]
-let selectedItem = null;
+let selectedItem = null
 
-console.log(selectedItem);
+console.log(selectedItem)
 
-selectedItem = "노트북";
+selectedItem = '노트북'
 
-console.log(selectedItem);
+console.log(selectedItem)
 
 const product = {
-  name: "노트북",
+  name: '노트북',
   price: 1_500_000,
   discount: null,
-};
+}
 
-console.log(product);
+console.log(product)
+
 
 // --------------------------------------------------------------------------
 // 연습 문제: Null과 Undefined 비교하기
@@ -71,11 +73,11 @@ console.log(product);
 // 6. value1과 value2를 === 연산자로 비교한 결과 출력
 
 // [작성 공간]
-let value1;
-let value2 = null;
+let value1
+let value2 = null
 
-console.log(typeof value1);
-console.log(typeof value2);
+console.log(typeof value1)
+console.log(typeof value2)
 
-console.log(value1 == value2);
-console.log(value1 === value2);
+console.log(value1 == value2)
+console.log(value1 === value2)

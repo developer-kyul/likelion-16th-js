@@ -1,0 +1,19 @@
+/* 
+  Sass (전처리기) -> CSS -> PostCSS (후처리기)
+*/
+
+@mixin params() {
+  font-size: 1rem;
+  line-height: 1.45;
+  color: #121212;
+  letter-spacing: -0.1px;
+}
+
+body p {
+  @include params();
+}
+
+section p {
+  @include params();
+  margin-block-end: 20px;
+}

@@ -1,0 +1,99 @@
+// --------------------------------------------------------------------------
+// 연습 문제: 함수 실행 컨텍스트 기본
+// --------------------------------------------------------------------------
+// 음료 이름을 받아서 주문 메시지를 출력하는 함수를 작성하세요.
+// 예: '아메리카노 주문이 접수되었습니다.'
+//
+// 조건:
+// 1. orderDrink 함수 선언 (매개변수: drinkName)
+// 2. '[drinkName] 주문이 접수되었습니다.' 출력
+// 3. 함수를 두 번 호출 ('아메리카노', '카페라떼')
+
+// [작성 공간]
+function orderDrink(drinkName) {
+  const orderMessage = drinkName + ' 주문이 접수되었습니다.'
+  return orderMessage
+}
+
+console.log(orderDrink('아메리카노'))
+console.log(orderDrink('카페라떼'))
+
+
+// --------------------------------------------------------------------------
+// 연습 문제: 실행 컨텍스트와 계산 함수
+// --------------------------------------------------------------------------
+// 상품 가격과 수량을 받아서 총 금액을 계산하는 프로그램을 작성하세요.
+//
+// 조건:
+// 1. itemPrice 변수에 8000 할당
+// 2. itemQuantity 변수에 3 할당
+// 3. calculateTotal 함수 선언 (매개변수: price, quantity)
+//    - 지역 변수 total에 price * quantity 할당
+//    - total 반환
+// 4. totalAmount 변수에 calculateTotal 함수 호출 결과 할당
+// 5. totalAmount 출력
+
+// [작성 공간]
+const itemPrice = 8000
+const itemQuantity = 3
+
+function calculateTotal(price, quantity) {
+  let total = parseInt(price, 10) * parseInt(quantity, 10)
+  return total
+}
+
+const totalAmount = calculateTotal(itemPrice, itemQuantity)
+console.log(totalAmount)
+
+
+// --------------------------------------------------------------------------
+// 연습 문제: 스코프 체인 종합 실습
+// --------------------------------------------------------------------------
+// 카페 주문 시스템을 만들어 전역 컨텍스트, 함수 컨텍스트, 스코프 체인을 모두 활용하세요.
+//
+// 조건:
+// 1. 전역 변수 cafeName에 '스타벅스' 할당
+// 2. makeOrder 함수 선언 (매개변수: drink, size)
+//    - 지역 변수 price 선언
+//    - size가 'tall'이면 price에 4000 할당
+//    - size가 'grande'이면 price에 4500 할당
+//    - 그 외에는 price에 5000 할당
+//    - 내부 함수 printOrder 선언
+//      - '[cafeName]에서 [size] 사이즈 [drink] 주문 - [price]원' 출력
+//    - printOrder 함수 호출
+// 3. makeOrder 함수를 두 번 호출
+//    - ('아메리카노', 'tall')
+//    - ('카페라떼', 'venti')
+
+// [작성 공간]
+const cafeName = '스타벅스'
+
+function makeOrder(drink, size) {
+  let price
+  
+  if (size === 'tall') {
+    price = 4000
+  } else if (size === 'grande') {
+    price = 4500
+  } else {
+    price = 5000
+  }
+  
+  function printOrder() {
+    let message = cafeName
+        message += '에서 '
+        message += size
+        message += ' 사이즈 '
+        message += drink
+        message += ' 주문 - '
+        message += price
+        message += '원'
+
+    console.log(message)
+  }
+  
+  printOrder()
+}
+
+makeOrder('아메리카노', 'tall')
+makeOrder('카페라떼', 'venti')

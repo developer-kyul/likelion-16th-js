@@ -1,195 +1,265 @@
-// 컴퓨터 메모리는 이미 sayHello 함수를 기억합니다.
-// 마치, 해당 영역의 가장 상위로 함수 선언문을 끌어올린 것처럼 보이죠?
-// 그래서 호이스팅(Hoisting)이라고 불러요. (용어 해설)
-// function myHouse() {
-//   // - 지역 변수 desk 선언 ('책상 위의 노트북')
-//   const desk = '책상 위의 노트북'
-//   // - 전역 변수 garden, 지역 변수 desk 콘솔에 출력
-//   console.log('garden:', garden)
-//   console.log('desk:', desk)
+// --------------------------------------------------------------------------
+// 실습: 화살표 함수 표현식 (Arrow Function Expression)
+// --------------------------------------------------------------------------
+// * 화살표 함수 : function 키워드 대신 '=>' 기호를 사용하여 함수를 간결하게 정의합니다.
+// * 매개변수 규칙 : 매개변수의 개수에 따라 소괄호 () 생략 여부가 달라집니다.
+// * 암묵적 반환 : 중괄호 {}를 생략하면 코드가 한 줄일 때 자동으로 값을 반환합니다.
+// --------------------------------------------------------------------------
+
+
+// --------------------------------------------------------------------------
+// 기본 구문 비교 (함수 표현식 vs 화살표 함수)
+// --------------------------------------------------------------------------
+
+// 함수 표현식으로 sum 함수 정의 (매개변수 x, y / function 키워드 사용)
+const sum = function(x, y) {
+  return parseFloat(x) + parseFloat(y)
+}
+
+console.log(sum(10, 40))
+
+// 화살표 함수 표현식으로 add 함수 정의 (매개변수 x, y / => 기호 사용)
+
+// 함수 선언문
+// function add(x, y) {
+  //   return parseFloat(x) + parseFloat(y)
+  // }
+  
+  // 함수 표현식
+  // const add = function (x, y) {
+    //   return parseFloat(x) + parseFloat(y)
+    // }
+    
+    // 화살표 함수 표현식
+    const add = (x, y) => {
+      return parseFloat(x) + parseFloat(y)
+    }
+    
+// sum 함수와 add 함수를 각각 호출하여 결과 콘솔 출력
+console.log(sum('10', '20px'))
+console.log(add('92', 6))
+
+// 설명:
+// 화살표 함수는 function 키워드를 제거하고, 
+// 매개변수와 본문 사이에 '=>'를 추가하여 작동합니다.
+
+// 출력 결과: 
+// 두 함수 모두 동일한 덧셈 결과 출력
+
+
+// --------------------------------------------------------------------------
+// 매개변수 개수에 따른 구문 변화
+// --------------------------------------------------------------------------
+
+// 1. 매개변수가 없는 경우
+// 빈 소괄호 () 또는 밑줄 _ 을 사용하여 log 함수 정의 ('로그' 출력)
+// log 함수 호출
+
+// 소괄호를 사용할 경우
+// const helloJS = () => {
+//   return 'Hello JavaScript! 😃'
 // }
 
-// var 변수는 선언과 초기화가 동시 진행 (JS 엔진이 undefined 설정)
-// var sayBye 
-
-
-// --------------------------------------------------------------------------
-// 실습: 변수의 범위와 안전 수칙 (Scope & TDZ)
-// --------------------------------------------------------------------------
-// * 스코프(Scope) : 변수가 어디까지 유효한지 결정하는 범위입니다.
-// * 일시적 사각지대(TDZ) : 변수 선언 후, 초기화 전까지 접근 불가능한 구간입니다.
-// * 호이스팅(Hoisting) : 선언문이 코드 최상단으로 끌어올려진 것처럼 작동하는 현상입니다.
-// --------------------------------------------------------------------------
-
-
-// --------------------------------------------------------------------------
-// 스코프 (Scope) - 전역과 지역
-// --------------------------------------------------------------------------
-
-// 전역 변수 garden 선언 ('마당의 꽃')
-const garden = '마당의 꽃'
-
-// --------------------------------------------------------------------------
-// 블록 스코프
-// 블록(Block, { ... }) - 지역 생성
-{
-  // 블록 내부의 범위(scope)에서만 
-  // 사용 가능한 지역변수(local variable)
-  // let, const 키워드로 정의된 변수 (✅ 외부에서 접근 불가능)
-  // 하지만, var 키워드로 정의된 변수는 지역 만들지 않음 (⚠️ 외부에서 접근 가능)
-  const blockVariable = '블록 내부의 변수'
-  console.log(blockVariable)
+// 언더스코어(밑줄)을 사용할 경우
+// const helloJS = (_) => {
+const helloJS = _ => {
+  return '안녕! 자바스크립트 😃'
 }
 
-// console.log(blockVariable)
+// 달러($) 기호도 가능은 하지만, 거의 안씀
+// const helloJS = $ => {
+//   return '안녕! 자바스크립트 😃'
+// }
 
-// --------------------------------------------------------------------------
-// 함수 스코프
-// 함수 myHouse 선언
-function myHouse() {
-  // - 지역 변수 desk 선언 ('책상 위의 노트북')
-  const desk = '책상 위의 노트북'
-  // - 전역 변수 garden, 지역 변수 desk 콘솔에 출력
-  console.log('garden:', garden)
-  console.log('desk:', desk)
+console.log(helloJS('어떤 값'))
+
+// 2. 매개변수가 1개인 경우
+// 소괄호를 생략하고 매개변수(value)만 작성하여 double 함수 정의 (값 2배 반환)
+// double 함수 호출 및 결과 출력
+
+// const double = (value) => {
+//   return value ** 2
+// }
+
+const square = value => {
+  return value ** 2
 }
 
-myHouse()
+console.log(square(89, 5))
+console.log(square(179, 3))
 
-
-// 전역에서 garden, desk 변수 값 콘솔에 출력
-// - 함수 내부(지역)에서는 외부(전역) 변수에 접근할 수 있습니다.
-// - 외부(전역)에서는 함수 내부(지역) 변수에 접근할 수 없습니다. (ReferenceError)
-
-// garden 출력 결과
-console.log(garden)
-
-// desk 출력 결과
-// console.log(desk)
-
-
-// --------------------------------------------------------------------------
-// 스코프 체인 (Scope Chain)
-// --------------------------------------------------------------------------
-
-// 함수 outer 선언
-const outer = function() {
-  // - 지역 변수 livingRoom 선언 ('거실의 소파')
-  const livingRoom = '거실의 소파'
-  
-  // - 내부 함수 inner 선언
-  const inner = function () {
-    //   - 지역 변수 myRoom 선언 ('내 방의 침대')
-    const myRoom = '내 방의 침대'
-    //   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
-    console.log(garden)
-    console.log(livingRoom)
-    console.log(myRoom)
-  }
-  // - 내부 함수 inner 호출
-  inner()
-
-  //   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
-  console.log(garden)
-  console.log(livingRoom)
-  // console.log(myRoom)
+// 3. 매개변수가 2개 이상인 경우
+// 소괄호를 반드시 포함하여 multiply 함수 정의 (두 값의 곱 반환)
+// multiply 함수 호출 및 결과 출력
+const multiply = (z, k) => {
+  return Number(z) * Number(k)
 }
 
-// 함수 outer 호출
-outer()
+console.log(multiply('5', 81))
+console.log(multiply(9, -3))
 
-//   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
-console.log(garden)
-// console.log(livingRoom)
-// console.log(myRoom)
-
-// 설명: 변수를 찾을 때 현재 범위에 없으면, 점점 더 바깥 범위로 나가며 찾습니다.
+// 설명:
+// 매개변수가 1개일 때만 소괄호를 생략할 수 있어 코드가 더 간결하게 작동합니다.
 // 출력 결과:
-// - 전역 변수: '마당의 꽃'
-// - outer 함수 내부 지역 변수: '거실의 소파'
-// - inner 함수 내부 지역 변수: '내 방의 침대'
+// - 로그
+// - 입력값의 2배
+// - 입력값의 곱
+
 
 // --------------------------------------------------------------------------
-// 안전펜스 (TDZ, 일시적 사각지대)
+// 암묵적 반환 (Implicit Return)
 // --------------------------------------------------------------------------
 
-// 변수 선언(생성, 초기화)
-// 생성만 한 시점
-
-// var 변수로 정의된 것은 호이스팅(끌어올려는 것처럼 보여요)
-// var 변수의 초기화가 없다면? JS 엔진이 undefined로 초기 값을 설정
-console.log(notTdz)
-
-// tdz (초기화 이전 상태: <Uninitialized>)
-// console.log(tdz)
-
-let tdz // = '✅ let, const 변수는 "안전펜스(TDZ)" 생성'
-var notTdz = '⚠️ var 변수는 TDZ를 만들지 않아요.'
-
-console.log(tdz)
-
-// --------------------------------------------------------------------------
-// 호이스팅 (Hoisting) - 함수 선언문
-// --------------------------------------------------------------------------
-
-// 함수 선언보다 호출을 먼저 작성 (sayHello)
-console.log(sayHello())
-
-// sayHello 함수 선언 ('안녕! JavaScript 🌼' 출력)
-function sayHello() {
-  return '안녕! JavaScript 🌼'
+// 일반적인 화살표 함수 (중괄호 {}와 return 키워드 사용)
+// 명시적 반환(Explicit Return) 함수 정의 (x + y 반환)
+const px2rem = (pxValue/* 100px */) => {
+  // 16px === 1rem
+  return parseFloat(pxValue) / 16 + 'rem'
 }
 
-// 설명: 함수 선언문은 코드 맨 위로 끌어올려지는 것처럼 보이므로, 
-//      선언 전에도 호출이 가능하도록 작동합니다. (왜? 이미 메모리되어 있으므로)
-// 출력 결과: '안녕! JavaScript 🌼'
+console.log(px2rem(16))
+console.log(px2rem('16'))
+console.log(px2rem('16px'))
 
 
-// --------------------------------------------------------------------------
-// 호이스팅과 TDZ - var vs let/const
-// --------------------------------------------------------------------------
+// 암묵적 반환을 사용하는 화살표 함수 (중괄호 {}와 return 생략)
+// 암묵적 반환(Implicit Return) 함수 정의 (x + y 반환)
 
-// 1. var의 경우 (위험)
-// 변수 선언 전 tempVar 출력
-// 변수 tempVar를 var로 선언 및 초기화 ('나는 var')
+// 명시적 반환
+// const rem2px = (remValue) => {
+//   return parseFloat(remValue) * 16 + 'px'
+// }
 
-// 2. let/const의 경우 (안전)
-// 변수 선언 전 tempLet 출력 (ReferenceError 발생)
-// 변수 tempLet을 let으로 선언 및 초기화 ('나는 let')
+// 변신 1. 매개변수 1개 (소괄호 생략 가능)
+// const rem2px = remValue => {
+//   return parseFloat(remValue) * 16 + 'px'
+// }
+
+// 변신 2. 암묵적 반환
+const rem2px = remValue => parseFloat(remValue) * 16 + 'px'
+
+console.log(rem2px(2))
+console.log(rem2px('2'))
+console.log(rem2px('2rem'))
+
+
+// 두 함수의 결과 비교 출력
 
 // 설명:
-// var는 호이스팅 시, undefined로 초기화되어 미리 접근이 가능하도록 작동합니다. (버그 원인)
-// let/const는 호이스팅되지만, 초기화 전까지 TDZ(접근 금지 구역)에 갇혀 에러를 발생시킵니다.
-// 출력 결과: undefined
+// 본문이 한 줄이고 중괄호가 없으면, 자동으로 계산된 값이 반환되도록 작동합니다.
+// 출력 결과: 두 함수 모두 동일한 덧셈 결과 출력
 
+// 함수 표현식 (주관적 의견: ⭐️⭐️)
+// const plus = function (x, y) { return x + y }
+// const minus = function (x, y) { return x - y }
+// const multiple = function (x, y) { return x * y }
+// const divide = function (x, y) { return x / y }
+
+// 화살표 함수 표현식 (주관적 의견: ⭐️⭐️⭐️⭐️⭐️)
+const plus = (x, y) => x + y
+const minus = (x, y) => x - x
+const multiple = (x, y) => x * y
+const divide = (x, y) => x / y
+const double = x => x ** 2
 
 // --------------------------------------------------------------------------
-// 함수 표현식과 호이스팅
+// 객체(Object) 반환 시 주의사항
 // --------------------------------------------------------------------------
 
-// 함수 표현식 선언 전, sayBye 호출 (ReferenceError 발생)
-// console.log(undefined()????) 
-// console.log(sayBye())
+// 문자열 value를 받아 객체 { key: value }를 반환하는 createObject 함수 정의
 
-// const 키워드를 사용해 sayBye 변수에 함수 표현식 할당 ('잘 가! JavaScript 👋' 출력)
-// let, const 선언 시, 메모리에 이름만 등록 [TDZ, 안전펜스] 초기화 [TDZ 해제]
-// var 선언 시, 메모리에 이름이 등록됨과 동시에 초기화(초기값이 없으면 undefined 설정) 함께 진행
-var sayBye = function() {
-  return '잘 가! JavaScript 👋'
+// 함수 선언문
+function createPerson(name, age, hobby) {
+  
+  // 사람(인간) 추상화한 객체 생성
+  const 사람_객체 = {
+    이름: name,
+    나이: age + '살',
+    취미: hobby,
+  }
+
+  // 사람 객체 반환
+  return 사람_객체
 }
 
-// 함수 표현식 선언 후 sayBye 호출
-console.log(sayBye())
+const minji = createPerson('하민지', 17, '유튜브 시청')
+const junwoo = createPerson('박준우', 45, '골프')
+
+console.log(minji)
+console.log(junwoo)
+
+// 함수 표현식
+const createTeamMember = function(userName, userEmail, IQ) {
+  // 인간 객체 { 이름, 이메일, 지능 }
+  return {
+    name: userName,
+    email: userEmail,
+    intelligence: IQ
+  }
+}
+
+const hyoungju = createTeamMember('임형주', 'lim@company.io', 145)
+const sangsu = createTeamMember('김상수', 'kimss@develop.dev', 136)
+console.log(hyoungju)
+console.log(sangsu)
+
+// 화살표 함수 표현식
+// 집(하우스) 만드는 기능(함수)
+// 집의 이름, 집의 유형, 집의 면적, 빌트인(냉장고, 세탁기, 에이컨 등) 여부
+
+const createHouse = (이름, 유형, 면적, 빌트인_여부) => {
+  // 집(house) 객체 생성
+  const house = {
+    name: 이름,
+    type: 유형,
+    area: parseFloat(면적) + '㎡',
+    isBuiltIn: 빌트인_여부,
+  }
+
+  // 생성된 집 객체 반환
+  return house
+}
+
+const createTownHouse = (이름, 유형, 면적, 빌트인_여부) => ({
+  name: 이름,
+  type: 유형,
+  area: parseFloat(면적) + '㎡',
+  isBuiltIn: 빌트인_여부,
+})
+
+const 서초동_아파트 = createTownHouse('데샹 아티스트', '아파트', 114, true)
+console.log(서초동_아파트)
+
+const 길음동_오피스텔 = createTownHouse('해초름', '오피스텔', 56, false)
+console.log(길음동_오피스텔)
+
+// 주의: 객체 리터럴의 중괄호 {}를 함수 본문 블록으로 착각하지 않도록 소괄호 ()로 감싸야 함
+
+// createObject 함수 호출 및 결과 출력
 
 // 설명:
-// 함수 표현식은 '변수 호이스팅' 규칙을 따릅니다.
-// const로 선언되었으므로 TDZ의 영향을 받아, 선언 라인 전에는 사용할 수 없게 작동합니다.
-// 출력 결과: '잘 가! JavaScript 👋'
+// 객체를 암묵적으로 반환하려면 ({ key: value }) 형태처럼 소괄호로 감싸야 정상적으로 작동합니다.
+// 출력 결과: { key: "입력한 값" }
 
 
 // --------------------------------------------------------------------------
 // 핵심!
 // --------------------------------------------------------------------------
-// 1. 안쪽 스코프에서는 바깥쪽을 볼 수 있지만, 바깥쪽에서는 안쪽을 볼 수 없습니다.
-// 2. 호이스팅은 선언을 최상단으로 끌어올린 것처럼 작동하는 현상입니다. (함수 선언문은 즉시 사용 가능)
-// 3. let과 const는 TDZ(일시적 사각지대) 덕분에 선언 전에 사용하는 실수를 막아줍니다.
+// 1. function 키워드 대신 화살표(=>)를 사용해 코드를 간결하게 만듭니다.
+// 2. 매개변수가 1개면 소괄호 생략 가능, 0개거나 2개 이상이면 필수입니다.
+// 3. 중괄호 {}를 생략하면 return 없이도 값이 자동으로 반환(암묵적 반환)됩니다.
+// 4. 객체를 바로 반환할 때는 소괄호 ()로 감싸주어야 합니다.
+
+
+const ten = _ => 10
+console.log(ten())
+
+const logger = message => message
+console.log(logger('화살표 함수 아직은 생소하지만 친해져볼께요!'))
+
+const pxToRem = pxValue => parseFloat(pxValue) / 16 + 'rem'
+console.log(pxToRem(648))
+
+const percentage = (n1, n2) => n1 / n2 * 100 + '%'
+console.log(percentage(360, 1280))
+
