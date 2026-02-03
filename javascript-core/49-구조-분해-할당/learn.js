@@ -36,12 +36,13 @@ const myNotebook = {
 // 구조 분해 할당(Destructuring Assignment) 구문
 {
   // myNotebook 객체의 구조: { brand, processor, ram, ssd, maker }
-  const { 
-    brand: name,  // myNotebook 객체의 brand 속성 값을 지역 변수 name 할당
-    processor: cpu, 
+  const {
+    brand: name, // myNotebook 객체의 brand 속성 값을 지역 변수 name 할당
+    processor: cpu,
     memory, // myNotebook 객체에 없는 속성 이름 (값: undefined)
-    ssd, 
-    maker } = myNotebook
+    ssd,
+    maker,
+  } = myNotebook
 
   // console.log(brand, processor, ram, ssd, maker)
   console.log(name, cpu, memory, ssd, maker)
@@ -59,7 +60,6 @@ console.groupEnd()
 // 3. 배열에 값이 두 개뿐일 경우를 대비해 세 번째 변수에 기본값 0을 설정하세요.
 console.groupCollapsed('배열 구조 분해 할당 실습')
 
-
 const points = [92, -24, 0] // [x, y, z]
 
 {
@@ -71,11 +71,10 @@ const points = [92, -24, 0] // [x, y, z]
 }
 
 {
-  const [ x, y, z ] = points // [숫자값, 숫자값, 숫자값]
+  const [x, y, z] = points // [숫자값, 숫자값, 숫자값]
 
   console.log(x, y, z)
 }
-
 
 console.groupEnd()
 
@@ -135,7 +134,6 @@ function printFriendsStep2(friends) {
 }
 
 function printFriendsStep3([friend1, friend2, friend3, friend4]) {
-
   console.log(friend1)
   console.log(friend2)
   console.log(friend3)
@@ -147,7 +145,6 @@ console.log(printFriendsStep2(['박한영', '김준수', '장하준', '이현종
 console.log(printFriendsStep3(['박한영', '김준수', '장하준', '이현종']))
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 구조 분해 할당 + 기본 값 설정
@@ -166,12 +163,12 @@ console.groupEnd()
 
   // 만약 myCup 객체에 isPresent 속성이 없다면?
   // isPresent 속성의 기본 값을 할당하자.
-  const { 
-    name = 'Mug Cup', 
-    color = '민트색', 
-    material = '플라스틱', 
-    price = 3000, 
-    isPresent = true 
+  const {
+    name = 'Mug Cup',
+    color = '민트색',
+    material = '플라스틱',
+    price = 3000,
+    isPresent = true,
   } = yourCup // myCup
 
   console.log(name, color, material, price)
@@ -199,21 +196,23 @@ console.groupEnd()
   }
 
   console.log(printInfoStep1(myCup))
-  console.log(printInfoStep1({
-    color: '골드색',
-    price: 27000,
-  }))
+  console.log(
+    printInfoStep1({
+      color: '골드색',
+      price: 27000,
+    }),
+  )
 
   // 단계 2.
   function printInfoStep2(product) {
     // 객체 구조 분해 할당 활용
     // product // { name, color, material, price, isPresent }
-    const { 
-      name = 'Mug Cup', 
-      color = '민트색', 
-      material = '플라스틱', 
-      price = 3000, 
-      isPresent = true 
+    const {
+      name = 'Mug Cup',
+      color = '민트색',
+      material = '플라스틱',
+      price = 3000,
+      isPresent = true,
     } = product
 
     console.log('name =', name)
@@ -227,19 +226,21 @@ console.groupEnd()
   }
 
   console.log(printInfoStep2(myCup))
-  console.log(printInfoStep2({
-    color: '골드색',
-    price: 27000,
-  }))
+  console.log(
+    printInfoStep2({
+      color: '골드색',
+      price: 27000,
+    }),
+  )
 
   // 단계 3.
   // 매개변수 영역에서 객체 구조 분해 할당 활용
-  function printInfoStep3({ 
-    name = 'Mug Cup', 
-    color = '민트색', 
-    material = '플라스틱', 
-    price = 3000, 
-    isPresent = true, 
+  function printInfoStep3({
+    name = 'Mug Cup',
+    color = '민트색',
+    material = '플라스틱',
+    price = 3000,
+    isPresent = true,
   }) {
     console.log('name =', name)
     console.log('color =', color)
@@ -249,19 +250,41 @@ console.groupEnd()
   }
 
   console.log(printInfoStep3(myCup))
-  console.log(printInfoStep3({
-    color: '골드색',
-    price: 27000,
-  }))
+  console.log(
+    printInfoStep3({
+      color: '골드색',
+      price: 27000,
+    }),
+  )
 
   // 단계 4.
   // 함수의 기본 매개변수 배우고 나서 진행!
+  {
+    function printInfoStep4({
+      name = '홍길동',
+      color = '하얀색',
+      material = '다이어몬드',
+      isPresent = false,
+      price = 1000,
+    } = {}) {
+      // const { name, color, material, isPresent, price } = objectInfo
 
+      console.log('name =', name)
+      console.log('color =', color)
+      console.log('material =', material)
+      console.log('price =', price)
+      console.log('isPresent =', isPresent)
+    }
 
+    console.log(printInfoStep4(myCup))
+    console.log(
+      printInfoStep4({
+        color: '골드색',
+        price: 27000,
+      }),
+    )
+  }
 }
-
-
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
