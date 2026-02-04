@@ -1,0 +1,167 @@
+/* eslint-disable no-unused-vars */
+// --------------------------------------------------------------------------
+// 실습: textContent & innerHTML
+// --------------------------------------------------------------------------
+
+const main = document.getElementById('main-content')
+const heading = main.querySelector('h1')
+
+// textContent 속성
+{
+  // 읽기
+  console.log(heading.textContent)
+
+  // 쓰기
+  heading.textContent =
+    '<em>글자가 기울어질까요?</em> 그대로 HTML이 출력될걸요?'
+
+  console.log(heading.textContent)
+}
+
+// innerHTML 속성
+{
+  // 읽기
+  console.log(heading.innerHTML)
+
+  // 쓰기
+  setTimeout(() => {
+    heading.innerHTML = `
+      <em>글자가 기울어질까요?</em> 
+      HTML 태그로 해석되므로 반영될걸요?
+    `
+
+    console.log('내부 HTML:', heading.innerHTML)
+
+    // outerHTML 속성 읽기
+    console.log('외부 HTML:', heading.outerHTML)
+  }, 2000)
+
+  // outerHTML 속성 쓰기
+  setTimeout(() => {
+    heading.outerHTML = `
+      <strong role="heading" aria-level="1">
+        ${heading.innerHTML}
+      </strong>
+    `
+  }, 4000)
+}
+
+// [실습 1] 오늘의 생활 수칙 (textContent)
+// 1. 아래 headlines 배열에서 무작위로 하나를 추출하세요.
+// 2. 버튼을 클릭하면 <h2>(또는 출력용 요소)의 텍스트가 변경되도록 작성하세요.
+console.group('1. textContent 실습')
+
+const headlines = [
+  '전자레인지에 금속 용기 사용 금지',
+  '생수병은 직사광선 피해서 보관하기',
+  '양치 후 30분 이내에는 커피 피하기',
+  '스마트폰은 잠들기 1시간 전 사용 자제',
+  '손 씻기는 30초 이상 꼼꼼히',
+  '냉장고에 뜨거운 음식 바로 넣지 않기',
+  '계란은 실온 보관보다 냉장 보관이 안전',
+  '채소는 흐르는 물에 충분히 세척',
+  '음식물 쓰레기는 물기 제거 후 버리기',
+  '비오는 날 우산은 완전히 말려서 보관',
+  '마스크는 1회용, 재사용 금지',
+  '신용카드 비밀번호는 타인과 공유 금지',
+  '가스레인지 사용 후 밸브 꼭 잠그기',
+  '운전 중 휴대전화 사용 자제',
+  '비상약은 유통기한 확인 후 복용',
+  '전기제품 플러그는 사용 후 뽑기',
+  '우유는 개봉 후 3일 이내 섭취 권장',
+  '화장실 문은 항상 닫아서 환기하기',
+  '세탁기는 세탁 후 문 열어두기',
+  '식사 전후 손 씻기 습관화',
+  '과일은 껍질째 먹기 전 깨끗이 세척',
+  '빨래는 햇볕에 충분히 말리기',
+  '컴퓨터 장시간 사용 시 1시간마다 스트레칭',
+  '냉동식품 해동은 냉장실에서 천천히',
+  '반려동물 산책 후 발 닦아주기',
+  '장기간 외출 시 수도, 가스 점검',
+  '쓰레기 분리수거는 정확하게',
+  '자동차 타이어 공기압 주기적 점검',
+  '운동 전 스트레칭 필수',
+  '식용유 재사용 자제',
+  '의약품은 어린이 손에 닿지 않는 곳에 보관',
+  '스마트폰 충전 중 과열 주의',
+  '침구류는 주기적으로 세탁',
+  '신선식품은 구입 후 바로 냉장보관',
+  '과음 후 충분한 수분 섭취',
+  '외출 후 손과 얼굴 깨끗이 씻기',
+  '겨울철 실내 적정 습도 유지',
+  '불필요한 전등은 끄고 다니기',
+  '공공장소에서는 이어폰 사용하기',
+  '비상연락망은 가족끼리 공유',
+]
+
+{
+  const practice1 = document.getElementById('practice1')
+  const display = practice1.querySelector('.headline-display')
+
+  // 이벤트 위임(Event Delegation)
+  practice1.addEventListener('click', (e) => {
+    // 실제 이벤트가 발생한 대상을 포함해 가장 가까운 부모까지 
+    // 거슬러 올라가 요소를 찾고, 요소가 없을 경우 null 반환
+    const button = e.target.closest('.btn-change')
+    // 빠른 반환(조기 리턴: Early Return)
+    if (!button) return
+    
+    // 랜덤 '오늘의 생활 수칙' 꺼내기
+    const randomIndex = Math.floor(Math.random() * headlines.length)
+    const randomContent = headlines.at(randomIndex)
+    
+    // DOM 요소의 텍스트 콘텐츠 조작(update)
+    display.textContent = randomContent
+
+  })
+}
+
+console.groupEnd()
+
+// --------------------------------------------------------------------------
+// [실습 2] 프로필 카드 렌더링 (innerHTML)
+// 1. 버튼을 클릭하면 지정된 <div> 내부에 프로필 카드 HTML을 렌더링하세요.
+// 2. 템플릿 리터럴을 활용하여 <h2>박상현</h2><p>프론트엔드 개발자</p> 구조를 만드세요.
+console.groupCollapsed('2. innerHTML 실습')
+
+{
+  const practice2 = document.getElementById('practice2')
+  const container = practice2.querySelector('.card-container')
+  
+  practice2.addEventListener('click', (e) => {
+    const button = e.target.closest('.btn-add')
+    if (!button) return
+    if (container.innerHTML.trim() !== '') return
+    alert('카드 렌더링')
+    renderCard()
+    // disable(button)
+  })
+
+  function enable(element) {
+    element.disabled = false
+    element.style.setProperty('cursor', 'pointer')
+  }
+  
+  function disable(element) {
+    element.disabled = true
+    element.style.setProperty('cursor', 'not-allowed')
+  }
+
+  function renderCard() {
+    container.innerHTML = /* html */`
+      <h2>박상현</h2>
+      <p>프론트엔드 개발자</p>
+    `
+  }
+}
+
+console.groupEnd()
+
+// --------------------------------------------------------------------------
+// 핵심 요약!
+// --------------------------------------------------------------------------
+// 1. 단순 문자열 교체: textContent가 더 빠르고 안전합니다.
+// 2. HTML 구조 생성: innerHTML은 태그를 해석하므로 새로운 요소를 만들 때 유용합니다.
+// 3. 백틱(``) 활용: innerHTML에 넣을 복잡한 문자열은 템플릿 리터럴이 가독성에 좋습니다.
+// 4. 보안 주의: 사용자로부터 입력받은 내용을 innerHTML로 넣을 때는 항상 조심해야 합니다.
+// --------------------------------------------------------------------------
