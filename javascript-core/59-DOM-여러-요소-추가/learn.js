@@ -155,23 +155,24 @@ const users = [
   ;(() => {
     // 문서 조각(가상 DOM 컨테이너) 객체 생성
     // 실제 문서가 아닌, 가상의 DOM 컨테이너(메모리) 상에 상주하는 데이터 활용 
-    const fragment = document.createDocumentFragment()
-    fragment.appendChild(document.createElement('ul'))
-    // <document-fragment><ul>...</ul></document-fragment>
-    // console.log(fragment) 
+    let fragment = document.createDocumentFragment()
+    
+    // 최근에는 아래 문법으로도 사용 가능
+    fragment = new DocumentFragment()
+    
+    // console.log(fragment)
 
     button.addEventListener('click', () => {
       users.forEach(({ job, name }) => {
         const item = document.createElement('li')
         item.textContent = `${job} ${name}`
         // fragment 객체에 삽입 (성능 저하? 없어요!!!)
-        fragment.firstElementChild.appendChild(item)
+        fragment.appendChild(item)
       })
 
-      // console.log(fragment.firstElementChild.outerHTML)
-      list.innerHTML += fragment.firstElementChild.innerHTML
+      list.appendChild(fragment)
     })
-  }) // ()
+  })()
 }
 
 
