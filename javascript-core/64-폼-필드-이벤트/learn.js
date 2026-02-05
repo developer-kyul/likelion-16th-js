@@ -188,6 +188,34 @@
 
 })()
 
+// 드롭다운 (select) 선택된 옵션 값, 이름 접근(읽기)
+// 드롭다운 체인지 이벤트 리스너 추가
+;(() => {
+  
+  const container = document.querySelector('.select-container')
+  const select = container.querySelector('select')
+
+  select.addEventListener('change', (e) => {
+    const { currentTarget: select } = e
+    
+    // console.log(select) // 셀렉트 요소
+    // console.log(select.options) // 포함된 옵션들 (HTMLOptionsCollection)
+    // console.log(select.selectedIndex) // 선택된 옵션의 인덱스
+    
+    // 선택된 옵션의 값 가져오기
+    console.log('선택된 옵션 값:', select.value)
+
+    if (select.value === '') {
+      console.log('빈공백: 지역을 선택하세요')
+    }
+
+    // 선택된 옵션의 레이블(이름) 가져오기
+    const selectedOption = select.options[select.selectedIndex]
+    console.log('선택된 옵션 이름:', selectedOption.text)
+  })
+
+})()
+
 
 // --------------------------------------------------------------------------
 // 핵심 정리
