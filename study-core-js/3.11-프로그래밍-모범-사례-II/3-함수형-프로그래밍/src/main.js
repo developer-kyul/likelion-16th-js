@@ -9,16 +9,8 @@ const description = document.querySelector('[data-description]')
 const errorMessage = document.querySelector('[data-error-message]')
 
 const INITIAL_JSON = [
-  {
-    id: 1,
-    name: '맥북 프로',
-    price: 2970000,
-  },
-  {
-    id: 2,
-    name: '로지컬 마우스',
-    price: 48000,
-  },
+  { id: 1, name: '맥북 프로', price: 2970000, },
+  { id: 2, name: '로지컬 마우스', price: 48000, },
 ]
 
 
@@ -31,8 +23,7 @@ function init() {
   resetButton.addEventListener('click', handleReset)
 }
 
-// --------------------------------------------------------------------------
-// 순수 함수 (Pure Function)
+
 
 let renderCount = 0
 
@@ -75,6 +66,12 @@ function createCardHtml(title, value) {
   `
 }
 
+const r1 = createCardHtml('순수하니?', '동일 입력 -> 동일 출력')
+const r2 = createCardHtml('순수하니?', '동일 입력 -> 동일 출력')
+console.log(r1)
+console.log(r2)
+console.log(r1 === r2)
+
 
 // --------------------------------------------------------------------------
 // 고차 함수 (HoF: Higher-order Function)
@@ -84,8 +81,8 @@ function createCardHtml(title, value) {
 // - 값으로 취급되므로 함수는 다른 함수의 인자로 전달할 수 있습니다.
 // - 값이므로 함수는 다른 함수의 반환 값이 될 수도 있습니다.
 // - formatter 함수를 인자로 받아 유연하게 데이터를 변환해보세요.
-function transformData(list, title) {
-  const processedValues = list.map((item) => item.name)
+function transformData(list, title, formatter) {
+  const processedValues = list.map(formatter)
   const resultString = processedValues.join(', ')
 
   return createCardHtml(title, resultString)
@@ -113,7 +110,8 @@ function handleProcessSubmit(e) {
 
     const nameCard = transformData(
       parsedData,
-      'PRODUCT NAMES'
+      'PRODUCT NAMES',
+      formatter,
     )
 
     const totalPrice = parsedData.reduce((acc, curr) => acc + curr.price, 0)
