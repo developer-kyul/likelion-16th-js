@@ -7,7 +7,7 @@
  * --------------------------------------------------------------------------
  */
 
-import { HorizontalStrategy } from './CarouselStrategies.js'
+import { HorizontalStrategy, VerticalStrategy } from './CarouselStrategies.js'
 import CarouselUI from './CarouselUI.js'
 import initCarousel from './initCaousel.js'
 
@@ -116,11 +116,11 @@ const FormManager = {
     const dom = ui.render()
 
     // 전략(Strategy) 부품 선택
-    const strategy = HorizontalStrategy 
+    const strategy = mode === 'horizontal' ? HorizontalStrategy : VerticalStrategy
 
-    if (mode === 'vertical') {
-      return alert('세로 모드는 지원 예정입니다.')
-    }
+    // if (mode === 'vertical') {
+    //   return alert('세로 모드는 지원 예정입니다.')
+    // }
     
     // 슬라이드 추가
     const rail = dom.querySelector('[data-carousel-rail]')

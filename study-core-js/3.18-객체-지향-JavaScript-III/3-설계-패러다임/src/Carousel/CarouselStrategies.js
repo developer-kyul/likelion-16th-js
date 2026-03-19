@@ -29,3 +29,8 @@ export const VerticalStrategy = {
   getStepFromWheel: (e) => (e.deltaY > 0 ? 1 : -1),
   getPointerPos: (e) => e.clientY,
 }
+
+// 페이드인/아웃 이동 전략(부품)
+export const FadeInOutStrategy = {
+  
+}

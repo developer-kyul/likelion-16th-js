@@ -4,7 +4,7 @@ import './style.css'
 // 데이터 보호: 클로저(Closure)
 // --------------------------------------------------------------------
 // - 클로저의 생성 원리를 이해하고 함수가 종료된 후에도 변수가 살아남는 이유
-// - 공개할 필요가 없는 데이터를 숨기는 은닉화(Infirmation Hiding)의 중요성
+// - 공개할 필요가 없는 데이터를 숨기는 은닉화(Information Hiding)의 중요성
 // - 클로저를 활용해 외부 접근이 차단된 독립적인 객체를 만드는 캡슐화(Encapsulation)
 // - 클로저는 함수만으로 데이터를 보호할 수 있는 자바스크립트의 근본적인 메커니즘
 // - 예측 가능한 코드를 만드는 것이 클로저 은닉화의 진짜 목적! (정해진 방법만 사용 가능)
@@ -23,8 +23,8 @@ resetButton.addEventListener('click', handleReset)
 
 // 금고 액션 타입
 const VAULT_ACTION = {
-  deposit: { type: 'deposit', amount: 620 },   // 입금
-  withdraw: { type: 'withdraw', amount: 240 }, // 출금
+  deposit: { type: 'deposit', amount: 314 },   // 입금
+  withdraw: { type: 'withdraw', amount: 216 }, // 출금
 }
 
 // --------------------------------------------------------------------------
@@ -33,10 +33,15 @@ const VAULT_ACTION = {
 /**
  * 보안 금고를 생성하는 함수 (클로저 팩토리: Closure Factory)
  * @param {number} initialBalance 외부에서 전달된 초기값
- * @returns {object} 은닉된 데이터에 접근할 수 있는 공개 메서드들
+ * @returns {{ 
+ *  getBalance: () => number
+ *  deposit: (amount: number) => number
+ *  withdraw: (amount: number) => number | null
+ * }} 은닉된 데이터에 접근할 수 있는 공개 메서드들
  */
 function createVault(initialBalance) {
   // TODO 1: initialBalance를 외부에서 접근 못하게 은닉하세요.
+  let balance = initialBalance
 
   // TODO 2: 클로저를 통해 반환되는 객체를 생성합니다.
   // - deposit(amount) : amount 만큼 금고에 입금하고 총액을 반환합니다. (은닉된 자산 증가)
@@ -45,7 +50,45 @@ function createVault(initialBalance) {
   //   - 더 이상 출금할 은닉된 자산이 없다면? null을 반환합니다.
   // - getBalance() : 은닉된 자산을 반환합니다.
   
+  const vaultManager = {
+    // 공개
+    deposit(amount) {
+      balance += amount
+      return balance
+    },
+    withdraw(amount) {
+      if (balance < amount) return null
+      balance -= amount
+      return balance
+    },
+    getBalance() {
+      return balance
+    }
+  }
+
+  return vaultManager
 }
+
+// 클로저로 생성된 VaultManager 객체를 사용해 
+// 은닉된 자산에 접근/수정 (단 허용된 방법으로만)
+(() => {
+
+  const vaultManager = createVault(1000)
+  console.log(vaultManager)
+
+  // 현재 잔고는?
+  // console.log(vaultManager.balance) // 접근/조작 불가능!! (은닉화 성공!)
+
+  // 허용된 방법으로 잔고 확인 가능?
+  console.log(vaultManager.getBalance())
+
+  // 허용된 방법으로 1500원 입금한 총액은?
+  console.log(vaultManager.deposit(1500))
+  
+  // 허용된 방법으로 740원 출금한 총액은?
+  console.log(vaultManager.withdraw(740))
+
+}) //()
 
 // "내 금고" 캡슐화된 인스턴스를 담는 용도 변수
 let myVault = null
@@ -61,6 +104,7 @@ function handleVaultInit(event) {
 
   // 클로저 인스턴스 생성 ('은닉화' 시작)
   // 로직 작성
+  myVault = createVault(initialAsset)
 
   if (!myVault) alert('금고를 열려면 먼저 클로저 인스턴스(myVault)를 생성해야 합니다.')
 
@@ -77,6 +121,8 @@ function handleClickVaultContainer(e) {
 
 function handleReset() {
   switchMode(false)
+
+  // 여기서 클로저로 인한 메모리를 회수
   myVault = null
 }
 
@@ -88,14 +134,14 @@ function excuteVaultAction(actionType) {
   if (actionType === deposit.type) {
     // 입금
     // 로직 작성
-
+    myVault.deposit(deposit.amount)
     updateLog(`${deposit.amount}원이 안전하게 입금되었습니다.`, 'success')
   }
 
   if (actionType === withdraw.type) {
     // 출금
     // 로직 작성
-
+    myVault.withdraw(withdraw.amount)
     const result = myVault.withdraw(withdraw.amount)
     
     result !== null
@@ -107,6 +153,8 @@ function excuteVaultAction(actionType) {
     try {
       // 은닉된 자산에 접근 시도 (차단!)
       // 로직 작성
+      myVault.balance = 0
+      console.log(myVault.balance)
 
       updateLog(
         '접근 실패! 은닉된 변수(balance)에 직접 접근할 수 없습니다.',
